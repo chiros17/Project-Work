@@ -3,16 +3,17 @@ package it.biblioteca.project_work.utente_service.entity;
 import jakarta.persistence.*;
 import lombok.*;
 
-@Entity
+@Entity // Indica che questa classe è un'entità persistente.
 @Builder
-@NoArgsConstructor
+@NoArgsConstructor // Sono annotazioni Lombok che generano automaticamente costruttori
 @AllArgsConstructor
 @Getter
-@Setter
+@Setter // riducono il codice boilerplate.
 public class Utente {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id // Marca il campo id come chiave primaria della tabella.
+    @GeneratedValue(strategy = GenerationType.IDENTITY) // Specifica che il valore dell'id sarà generato automaticamente
+                                                        // dal database (es. auto-incremento).
     private Long id;
 
     private String uuid;
@@ -23,6 +24,6 @@ public class Utente {
     private String username;
     private String password;
 
-    @Enumerated(EnumType.STRING)
+    @Enumerated(EnumType.STRING) // Indica che Ruolo sarà salvato come stringa
     private Ruolo ruolo;
 }

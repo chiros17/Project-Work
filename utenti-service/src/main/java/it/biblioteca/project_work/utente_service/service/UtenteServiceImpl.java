@@ -18,13 +18,16 @@ public class UtenteServiceImpl implements UtenteService{
 
     @Override
     public UtenteDTO creaUtente(UtenteDTO utenteDTO) {
+        if (utenteDTO.getUuid() == null || utenteDTO.getUuid().isEmpty()) { // Controlla se l'UUID non è già stato impostato 
+            utenteDTO.setUuid(UUID.randomUUID().toString()); // Genera UUID randomico e lo converte in Stringa
+        }
         return modelToDto(utenteRepository.save(dtoToModel(utenteDTO)));
     }
 
     @Override
     public UtenteDTO trovaUtente(String uuid) {
         // Logica per trovare un utente per ID
-        return modelToDto(utenteRepository.findByUuid(uuid).orElseThrow(UserNotFoundException::new)); // Placeholder
+        return modelToDto(utenteRepository.findByUuid(uuid).orElseThrow(UserNotFoundException::new)); // se non trovato lanciamo l'exception personalizzata
     }
 
     @Override
@@ -43,9 +46,11 @@ public class UtenteServiceImpl implements UtenteService{
     @Override
     public UtenteDTO autenticaUtente(String username, String password) {
         // Logica per autenticare un utente
-        return UtenteDTO.builder().build(); // Placeholder
+        return UtenteDTO.builder().build(); 
     }
 
+
+    // Conversione da model a Dto
     private UtenteDTO modelToDto( Utente utente ){
         return UtenteDTO.builder()
                 .uuid(utente.getUuid())
@@ -55,6 +60,8 @@ public class UtenteServiceImpl implements UtenteService{
                 .build();
     }
 
+
+    // Conversione da Dto a model
     private Utente dtoToModel( UtenteDTO utente ){
         return Utente.builder()
                 .uuid(utente.getUuid())
@@ -64,3 +71,9 @@ public class UtenteServiceImpl implements UtenteService{
                 .build();
     }
 }
+
+//Questa classe implementa l'interfaccia UtenteService 
+//e gestisce l'interazione con il UtenteRepository.
+// Include anche metodi per la conversione tra DTO (Data Transfer Object) e Model (Entity). 
+//Le operazioni di trovaUtente ed eliminaUtente 
+//gestiscono l'eccezione UserNotFoundException se un utente non viene trovato.
