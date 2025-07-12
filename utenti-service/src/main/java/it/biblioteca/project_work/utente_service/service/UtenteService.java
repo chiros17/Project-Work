@@ -15,3 +15,6 @@ public interface UtenteService {
     UtenteDTO autenticaUtente(String username, String password);
 
 }
+
+// Questa interfaccia definisce le operazioni CRUD 
+//(Create, Read, Update, Delete) per gli utenti e un metodo di autenticazione:
