@@ -4,7 +4,18 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="769e6860-42dd-42ed-90b1-865130fc9609" name="Changes" comment="" />
+    <list default="true" id="769e6860-42dd-42ed-90b1-865130fc9609" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/libro-service/src/main/java/model/Book.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/prestiti-service/.idea/checkstyle-idea.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/prestiti-service/.idea/compiler.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/prestiti-service/.idea/encodings.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/prestiti-service/.idea/jarRepositories.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/prestiti-service/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/prestiti-service/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/prestiti-service/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/prestiti-service/HELP.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -30,17 +41,6 @@
     &quot;last_opened_file_path&quot;: &quot;C:/Users/NetFix Store/Desktop/Academy EY/Progetti Spring/Project-Work&quot;
   }
 }</component>
-  <component name="RunManager">
-    <configuration default="true" type="JetRunConfigurationType">
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
-      <option name="filePath" />
-      <method v="2" />
-    </configuration>
-  </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
       <changelist id="769e6860-42dd-42ed-90b1-865130fc9609" name="Changes" comment="" />
@@ -50,5 +50,16 @@
       <updated>1752245159637</updated>
     </task>
     <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
 </project>
