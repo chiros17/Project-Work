@@ -6,7 +6,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import it.biblioteca.project_work.prestiti_service.model.Prestito;
 
-public interface PrestitoRepository  extends JpaRepository<Prestito, Long> {
+public interface PrestitoRepository  extends JpaRepository<Prestito,String> {
 
      
     List<Prestito> findByUtenteUuid(String utenteUuid);// Metodo per trovare tutti i prestiti associati a un utente specifico

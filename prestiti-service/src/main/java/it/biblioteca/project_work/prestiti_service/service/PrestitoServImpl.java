@@ -35,8 +35,7 @@ public class PrestitoServImpl implements IPrestitoService {
 
     @Override
     public PrestitoDto restituisciLibro(String prestitoUuid) {
-        Prestito prestito = prestitoRepository.findById(Long.parseLong(prestitoUuid))// Trova il prestito per UUID
-        // percheè il metodo restituisciLibro accetta un UUID come Stringa, ma il repository lavora con Long
+        Prestito prestito = prestitoRepository.findById(prestitoUuid)// Trova il prestito per UUID
         
         // Se il prestito non esiste, lancia un'eccezione
                 .orElseThrow(() -> new RuntimeException("Prestito non trovato con UUID: " + prestitoUuid));
@@ -49,13 +48,11 @@ public class PrestitoServImpl implements IPrestitoService {
     }
 
     @Override
-    public PrestitoDto trovaPrestito(String prestitoUuid) {
-        return modelToDto(prestitoRepository.findById(Long.parseLong(prestitoUuid)) // Trova il prestito per UUID
-
-        //se il prestito non esiste, lancia un'eccezione
-                .orElseThrow(() -> new RuntimeException("Prestito  " + prestitoUuid + " non trovato"))); 
-    }
-    
+public PrestitoDto trovaPrestito(String prestitoUuid) {
+    return modelToDto(
+        prestitoRepository.findById(prestitoUuid)
+            .orElseThrow(() -> new RuntimeException("Prestito " + prestitoUuid + " non trovato"))
+    );}
 
     @Override
     public List<PrestitoDto> listaTuttiIPrestiti() {
