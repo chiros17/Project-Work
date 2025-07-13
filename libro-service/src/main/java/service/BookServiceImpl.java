@@ -16,6 +16,7 @@ import java.util.UUID;
 public class BookServiceImpl implements BookService
 {
     private final BookRepository bookRepository;
+    // private final WebClient.Builder webClientBuilder;
 
     @Override
     public List<BookDTO> findAll()
