@@ -87,7 +87,7 @@ public class BookServiceImpl implements BookService
                 .build();
     }
 
-    private Book dtoToModel(BookDTO book )
+    private Book dtoToModel( BookDTO book )
     {
         return Book.builder()
                 .uuid(book.getUuid())
