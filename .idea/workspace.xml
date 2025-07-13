@@ -5,16 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="769e6860-42dd-42ed-90b1-865130fc9609" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/libro-service/src/main/java/model/Book.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/prestiti-service/.idea/checkstyle-idea.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/prestiti-service/.idea/compiler.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/prestiti-service/.idea/encodings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/prestiti-service/.idea/jarRepositories.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/prestiti-service/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/prestiti-service/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/prestiti-service/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/prestiti-service/HELP.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/libro-service/src/main/java/dto/BookDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/libro-service/src/main/java/repository/BookRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/libro-service/src/main/java/service/BookService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libro-service/src/main/java/model/Book.java" beforeDir="false" afterPath="$PROJECT_DIR$/libro-service/src/main/java/model/Book.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
