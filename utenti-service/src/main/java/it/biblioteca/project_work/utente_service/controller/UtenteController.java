@@ -10,7 +10,7 @@ import java.util.List;
 
 @CrossOrigin( origins = "localhost://4200")// Permette alle richieste di Angular di accedere a questo controller
 @RestController //Identifica questa classe come controller
-@RequestMapping("/api/utenti") //Questa annotazione, applicata a livello di classe, definisce il percorso base  per tutte le operazioni gestite da questo controller.
+@RequestMapping("/api/v1/utenti") //Questa annotazione, applicata a livello di classe, definisce il percorso base  per tutte le operazioni gestite da questo controller.
 @RequiredArgsConstructor // Genera un costruttore che inietta UtenteService
 public class UtenteController {
 
