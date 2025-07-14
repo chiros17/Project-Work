@@ -8,15 +8,18 @@ import jakarta.validation.Valid;
 
 import java.util.List;
 
-@RestController //Identifica questa classe come controller
-@RequestMapping("/api/v1/utenti") //Questa annotazione, applicata a livello di classe, definisce il percorso base  per tutte le operazioni gestite da questo controller.
-@RequiredArgsConstructor // Genera un costruttore che inietta UtenteService
-public class UtenteController {
+@RestController     //Identifica questa classe come controller
+@RequestMapping("/api/v1/utenti")   //Questa annotazione, applicata a livello di classe, definisce il percorso base  per tutte le operazioni gestite da questo controller.
+@RequiredArgsConstructor    // Genera un costruttore che inietta UtenteService
+public class UtenteController
+{
 
     private final UtenteService utenteService; //dipendenza da service
 
+    //Prende l'intero oggetto  inviato nel corpo del messaggio HTTP
     @PostMapping
-    public UtenteDTO creaUtente( @Valid @RequestBody UtenteDTO utenteDTO){//Prende l'intero oggetto  inviato nel corpo del messaggio HTTP 
+    public UtenteDTO creaUtente( @Valid @RequestBody UtenteDTO utenteDTO)
+    {
         return utenteService.creaUtente(utenteDTO);
     }
 
@@ -34,9 +37,7 @@ public class UtenteController {
         utenteService.eliminaUtente(uuid);
     }
 
-
-
-
 }
-//   Il controller ha la sola responsabilità di ricevere le richieste dal client ,Get ,Post ecc... e restituire i valori chiesti
+
+// Il controller ha la sola responsabilità di ricevere le richieste dal client ,Get ,Post ecc... e restituire i valori chiesti
 // Ha bisogno del service poichè comunica a lui di elaborare le richieste

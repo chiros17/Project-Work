@@ -5,8 +5,11 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;
 
-public interface UtenteRepository extends JpaRepository<Utente, Long> {
-
+public interface UtenteRepository extends JpaRepository<Utente, Long>
+{
+    // Metodo per la ricerca di un utente tramite username
     Optional<Utente> findByUsername(String username);
+
+    // Metodo di ricerca di un utente tramite uuid
     Optional<Utente> findByUuid(String uuid);
 }
