@@ -4,10 +4,10 @@ import java.time.LocalDate;
 import java.util.List;
 import java.util.UUID;
 
-import it.biblioteca.project_work.prestiti_service.exception.PrestitoNotFoundException;
 import org.springframework.stereotype.Service;
 
 import it.biblioteca.project_work.prestiti_service.dto.PrestitoDto;
+import it.biblioteca.project_work.prestiti_service.exception.PrestitoNotFoundException;
 import it.biblioteca.project_work.prestiti_service.model.Prestito;
 import it.biblioteca.project_work.prestiti_service.repository.PrestitoRepository;
 import lombok.AllArgsConstructor;
@@ -19,7 +19,7 @@ public class PrestitoServImpl implements IPrestitoService
     private final PrestitoRepository prestitoRepository;
 
     @Override
-    public PrestitoDto creaPrestito(PrestitoDto prestitoDto)
+    public PrestitoDto creaPrestito(PrestitoDto prestitoDto, String utenteUuid, String libroUuid)
     {
         
         if (prestitoDto.getUuid() == null)
@@ -32,6 +32,9 @@ public class PrestitoServImpl implements IPrestitoService
         prestito.setDataInizioPrestito(LocalDate.now());    // La data di inizio prestito è la data in cui si avvia il metodo
         prestito.setRestituito(false);  // ovviamente il prestito non è ancora restituito
         prestito.setDataRestituzione(null);     // inizialmente non c'è una data di restituzione
+
+        prestito.setBookUuid(libroUuid);
+        prestito.setUtenteUuid(utenteUuid);
 
         Prestito savedPrestito = prestitoRepository.save(prestito);     // Salva il Prestito nel database
         return modelToDto(savedPrestito);   // Converte il Prestito salvato in PrestitoDto e lo restituisce
