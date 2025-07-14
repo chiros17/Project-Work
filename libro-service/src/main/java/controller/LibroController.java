@@ -10,13 +10,10 @@ import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/api/v1/books")
+@RequestMapping("/api/v1/libri")
 public class LibroController
 {
     private final LibroService bookService;
-
-    @Value("${file.upload.path}")
-    private String uploadPath;
 
     @GetMapping
     List<LibroDTO> mostraLibri()
