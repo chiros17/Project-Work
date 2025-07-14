@@ -9,11 +9,12 @@ import lombok.NoArgsConstructor;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class BookDTO
+public class LibroDTO
 {
     private String uuid;
     private String titolo;
     private String autore;
+    private String copertina;
     private Integer quantita;
     private Double prezzo;
 }

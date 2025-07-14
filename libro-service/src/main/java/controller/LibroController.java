@@ -1,27 +1,31 @@
 package controller;
 
-import dto.BookDTO;
+import dto.LibroDTO;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.*;
-import service.BookService;
+import service.LibroService;
 
 import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/api/v1/books")
-public class BookController
+public class LibroController
 {
-    private final BookService bookService;
+    private final LibroService bookService;
+
+    @Value("${file.upload.path}")
+    private String uploadPath;
 
     @GetMapping
-    List<BookDTO> mostraLibri()
+    List<LibroDTO> mostraLibri()
     {
         return bookService.findAll();
     }
 
     @PostMapping
-    BookDTO save(@RequestBody BookDTO bookDTO)
+    LibroDTO save(@RequestBody LibroDTO bookDTO)
     {
         return bookService.save(bookDTO);
     }
@@ -33,14 +37,16 @@ public class BookController
     }
 
     @PutMapping
-    BookDTO update(@RequestBody String uuid, @RequestBody BookDTO bookDTO)
+    LibroDTO update(@RequestBody String uuid, @RequestBody LibroDTO bookDTO)
     {
         return bookService.update(uuid, bookDTO);
     }
 
     @PatchMapping
-    BookDTO partialUpdate(@RequestBody String uuid, @RequestBody BookDTO bookDTO)
+    LibroDTO partialUpdate(@RequestBody String uuid, @RequestBody LibroDTO bookDTO)
     {
         return bookService.partialUpdate(uuid, bookDTO);
     }
+
 }
+

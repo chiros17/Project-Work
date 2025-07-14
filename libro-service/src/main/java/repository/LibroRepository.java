@@ -1,13 +1,13 @@
 package repository;
 
-import model.Book;
+import model.Libro;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 import java.util.Optional;
 
 @Repository
-public interface BookRepository extends JpaRepository<Book, Long>
+public interface LibroRepository extends JpaRepository<Libro, Long>
 {
-    Optional<Book> findByUuid( String uuid );
+    Optional<Libro> findByUuid( String uuid );
 }

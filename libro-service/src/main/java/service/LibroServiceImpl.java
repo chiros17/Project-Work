@@ -1,11 +1,11 @@
 package service;
 
-import dto.BookDTO;
+import dto.LibroDTO;
 import exception.BookNotFoundException;
 import lombok.RequiredArgsConstructor;
-import model.Book;
+import model.Libro;
 import org.springframework.stereotype.Service;
-import repository.BookRepository;
+import repository.LibroRepository;
 
 import java.util.List;
 import java.util.Optional;
@@ -13,50 +13,50 @@ import java.util.UUID;
 
 @Service
 @RequiredArgsConstructor
-public class BookServiceImpl implements BookService
+public class LibroServiceImpl implements LibroService
 {
-    private final BookRepository bookRepository;
+    private final LibroRepository libroRepository;
     // private final WebClient.Builder webClientBuilder;
 
     @Override
-    public List<BookDTO> findAll()
+    public List<LibroDTO> findAll()
     {
-        return bookRepository.findAll()
+        return libroRepository.findAll()
                                         .stream()
                                         .map(this::modelToDto)
                                         .toList();
     }
 
     @Override
-    public BookDTO findByUuid(String uuid)
+    public LibroDTO findByUuid(String uuid)
     {
-        BookDTO bookDTO = modelToDto(bookRepository.findByUuid(uuid).orElseThrow(BookNotFoundException::new));
-        return bookDTO;
+        LibroDTO libroDTO = modelToDto(libroRepository.findByUuid(uuid).orElseThrow(BookNotFoundException::new));
+        return libroDTO;
     }
 
     @Override
-    public BookDTO save(BookDTO book)
+    public LibroDTO save(LibroDTO book)
     {
         book.setUuid(UUID.randomUUID().toString());
-        return modelToDto( bookRepository.save( dtoToModel( book ) ) );
+        return modelToDto( libroRepository.save( dtoToModel( book ) ) );
     }
 
     @Override
-    public BookDTO update(String uuid, BookDTO book)
+    public LibroDTO update(String uuid, LibroDTO book)
     {
-        Book bookToUpdate = bookRepository.findByUuid( uuid ).orElseThrow(BookNotFoundException::new);
+        Libro bookToUpdate = libroRepository.findByUuid( uuid ).orElseThrow(BookNotFoundException::new);
 
         bookToUpdate.setAutore(book.getAutore());
         bookToUpdate.setTitolo(book.getTitolo());
         bookToUpdate.setPrezzo(book.getPrezzo());
 
-        return modelToDto( bookRepository.save( bookToUpdate ) );
+        return modelToDto( libroRepository.save( bookToUpdate ) );
     }
 
     @Override
-    public BookDTO partialUpdate(String uuid, BookDTO book)
+    public LibroDTO partialUpdate(String uuid, LibroDTO book)
     {
-        Book bookToUpdate = bookRepository.findByUuid( uuid ).orElseThrow(BookNotFoundException::new);
+        Libro bookToUpdate = libroRepository.findByUuid( uuid ).orElseThrow(BookNotFoundException::new);
 
         if( book.getAutore() != null)
             bookToUpdate.setAutore(book.getAutore());
@@ -67,32 +67,34 @@ public class BookServiceImpl implements BookService
         if( book.getPrezzo() != null)
             bookToUpdate.setPrezzo(book.getPrezzo());
 
-        return modelToDto( bookRepository.save( bookToUpdate ) );
+        return modelToDto( libroRepository.save( bookToUpdate ) );
     }
 
     @Override
     public void deleteByUuid(String uuid)
     {
-        Book bookToDelete = bookRepository.findByUuid( uuid ).orElseThrow(BookNotFoundException::new);
-        bookRepository.deleteById(bookToDelete.getId());
+        Libro bookToDelete = libroRepository.findByUuid( uuid ).orElseThrow(BookNotFoundException::new);
+        libroRepository.deleteById(bookToDelete.getId());
     }
 
-    private BookDTO modelToDto( Book book )
+    private LibroDTO modelToDto( Libro book )
     {
-        return BookDTO.builder()
+        return LibroDTO.builder()
                 .uuid(book.getUuid())
                 .autore(book.getAutore())
                 .titolo(book.getTitolo())
+                .copertina(book.getCopertina())
                 .prezzo(book.getPrezzo())
                 .build();
     }
 
-    private Book dtoToModel( BookDTO book )
+    private Libro dtoToModel( LibroDTO book )
     {
-        return Book.builder()
+        return Libro.builder()
                 .uuid(book.getUuid())
                 .autore(book.getAutore())
                 .titolo(book.getTitolo())
+                .copertina(book.getCopertina())
                 .prezzo(book.getPrezzo())
                 .build();
     }
