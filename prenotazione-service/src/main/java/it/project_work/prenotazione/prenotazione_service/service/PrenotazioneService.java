@@ -1,6 +1,7 @@
-package service;
+package it.project_work.prenotazione.prenotazione_service.service;
 
-import dto.PrenotazioneDTO;
+
+import it.project_work.prenotazione.prenotazione_service.dto.PrenotazioneDTO;
 
 import java.util.List;
 
