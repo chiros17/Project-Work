@@ -8,6 +8,7 @@ import it.biblioteca.project_work.libro_service.service.LibroService;
 
 import java.util.List;
 
+@CrossOrigin(origins = "http://localhost:4200")
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/api/v1/libri")

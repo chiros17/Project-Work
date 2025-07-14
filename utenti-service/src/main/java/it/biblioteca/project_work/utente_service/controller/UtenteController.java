@@ -1,13 +1,22 @@
 package it.biblioteca.project_work.utente_service.controller;
 
-import it.biblioteca.project_work.utente_service.dto.UtenteDTO;
-import it.biblioteca.project_work.utente_service.service.UtenteService;
-import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.*;
-import jakarta.validation.Valid;
-
 import java.util.List;
 
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import it.biblioteca.project_work.utente_service.dto.UtenteDTO;
+import it.biblioteca.project_work.utente_service.service.UtenteService;
+import jakarta.validation.Valid;
+import lombok.RequiredArgsConstructor;
+
+@CrossOrigin(origins = "http://localhost:4200")
 @RestController     //Identifica questa classe come controller
 @RequestMapping("/api/v1/utenti")   //Questa annotazione, applicata a livello di classe, definisce il percorso base  per tutte le operazioni gestite da questo controller.
 @RequiredArgsConstructor    // Genera un costruttore che inietta UtenteService

@@ -29,8 +29,9 @@ public class Recensione
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    private String uuid;
     private String contenuto;
-    private double stars;
+    private Double stars;
     private String libroUuid;
     private String utenteUuid;
 

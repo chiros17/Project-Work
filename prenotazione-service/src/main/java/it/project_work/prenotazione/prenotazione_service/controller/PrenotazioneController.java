@@ -1,12 +1,13 @@
-package controller;
+package it.project_work.prenotazione.prenotazione_service.controller;
 
-import dto.PrenotazioneDTO;
+import it.project_work.prenotazione.prenotazione_service.dto.PrenotazioneDTO;
+import it.project_work.prenotazione.prenotazione_service.service.PrenotazioneService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
-import service.PrenotazioneService;
 
 import java.util.List;
 
+@CrossOrigin(origins = "http://localhost:4200")
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/api/v1/prenotazioni")

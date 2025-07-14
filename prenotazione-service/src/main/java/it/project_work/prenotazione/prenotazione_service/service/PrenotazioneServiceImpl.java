@@ -1,11 +1,11 @@
-package service;
+package it.project_work.prenotazione.prenotazione_service.service;
 
-import dto.PrenotazioneDTO;
-import exception.PrenotazioneNotFoundException;
+import it.project_work.prenotazione.prenotazione_service.dto.PrenotazioneDTO;
+import it.project_work.prenotazione.prenotazione_service.exception.PrenotazioneNotFoundException;
+import it.project_work.prenotazione.prenotazione_service.model.Prenotazione;
+import it.project_work.prenotazione.prenotazione_service.repository.PrenotazioneRepository;
 import lombok.RequiredArgsConstructor;
-import model.Prenotazione;
 import org.springframework.stereotype.Service;
-import repository.PrenotazioneRepository;
 
 import java.util.List;
 
@@ -39,7 +39,7 @@ public class PrenotazioneServiceImpl implements PrenotazioneService
     @Override
     public PrenotazioneDTO update(String uuid, PrenotazioneDTO prenotazione)
     {
-        PrenotazioneDTO prenotazioneDTO = modelToDTO(prenotazioneRepository.findByUuid(uuid).orElseThrow(PrenotazioneNotFoundException :: new));
+        PrenotazioneDTO prenotazioneDTO = modelToDTO(prenotazioneRepository.findByUuid(uuid).orElseThrow(PrenotazioneNotFoundException:: new));
 
         prenotazioneDTO.setDescrizione(prenotazione.getDescrizione());
         return prenotazioneDTO;
@@ -49,8 +49,8 @@ public class PrenotazioneServiceImpl implements PrenotazioneService
     {
         return Prenotazione.builder()
                 .uuid(prenotazioneDTO.getUuid())
-                .bookUuid(prenotazioneDTO.getBookUuid())
-                .userUuid(prenotazioneDTO.getUserUuid())
+                .libroUuid(prenotazioneDTO.getLibroUuid())
+                .utenteUuid(prenotazioneDTO.getUtenteUuid())
                 .descrizione(prenotazioneDTO.getDescrizione())
                 .build();
     }
@@ -59,8 +59,8 @@ public class PrenotazioneServiceImpl implements PrenotazioneService
     {
         return PrenotazioneDTO.builder()
                 .uuid(prenotazione.getUuid())
-                .bookUuid(prenotazione.getBookUuid())
-                .userUuid(prenotazione.getUserUuid())
+                .libroUuid(prenotazione.getLibroUuid())
+                .utenteUuid(prenotazione.getUtenteUuid())
                 .descrizione(prenotazione.getDescrizione())
                 .build();
     }

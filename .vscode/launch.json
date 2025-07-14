@@ -39,7 +39,7 @@
             "projectName": "libro-service",
             "args": "",
             "envFile": "${workspaceFolder}/.env",
-            "vmArgs": " -Dcom.sun.management.jmxremote -Dcom.sun.management.jmxremote.port=53281 -Dcom.sun.management.jmxremote.authenticate=false -Dcom.sun.management.jmxremote.ssl=false -Dspring.jmx.enabled=true -Djava.rmi.server.hostname=localhost -Dspring.application.admin.enabled=true -Dspring.boot.project.name=libro-service"
+            "vmArgs": " -Dcom.sun.management.jmxremote -Dcom.sun.management.jmxremote.port=53247 -Dcom.sun.management.jmxremote.authenticate=false -Dcom.sun.management.jmxremote.ssl=false -Dspring.jmx.enabled=true -Djava.rmi.server.hostname=localhost -Dspring.application.admin.enabled=true -Dspring.boot.project.name=libro-service"
         },
         {
             "type": "java",
@@ -49,7 +49,8 @@
             "mainClass": "it.biblioteca.project_work.prestiti_service.PrestitiServiceApplication",
             "projectName": "prestiti-service",
             "args": "",
-            "envFile": "${workspaceFolder}/.env"
+            "envFile": "${workspaceFolder}/.env",
+            "vmArgs": " -Dcom.sun.management.jmxremote"
         },
         {
             "type": "java",
@@ -58,6 +59,16 @@
             "cwd": "${workspaceFolder}",
             "mainClass": "it.project_work.prenotazione.prenotazione_service.PrenotazioneServiceApplication",
             "projectName": "prenotazione-service",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
+        },
+        {
+            "type": "java",
+            "name": "Spring Boot-RecensioneServiceApplication<recensione-service>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "it.project_work.recensione.recensione_service.RecensioneServiceApplication",
+            "projectName": "recensione-service",
             "args": "",
             "envFile": "${workspaceFolder}/.env"
         }

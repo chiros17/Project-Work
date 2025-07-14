@@ -1,6 +1,6 @@
-package handler;
+package it.project_work.prenotazione.prenotazione_service.handler;
 
-import exception.PrenotazioneNotFoundException;
+import it.project_work.prenotazione.prenotazione_service.exception.PrenotazioneNotFoundException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.MethodArgumentNotValidException;

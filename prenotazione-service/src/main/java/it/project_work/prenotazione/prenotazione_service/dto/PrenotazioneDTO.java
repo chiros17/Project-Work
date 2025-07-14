@@ -1,4 +1,4 @@
-package dto;
+package it.project_work.prenotazione.prenotazione_service.dto;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -12,7 +12,7 @@ import lombok.*;
 public class PrenotazioneDTO
 {
     private String uuid;
-    private String bookUuid;
-    private String userUuid;
+    private String libroUuid;
+    private String utenteUuid;
     private String descrizione;
 }

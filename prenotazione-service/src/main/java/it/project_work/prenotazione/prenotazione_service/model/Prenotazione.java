@@ -1,4 +1,4 @@
-package model;
+package it.project_work.prenotazione.prenotazione_service.model;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -19,7 +19,7 @@ public class Prenotazione
     private Long id;
 
     private String uuid;
-    private String bookUuid;
-    private String userUuid;
+    private String libroUuid;
+    private String utenteUuid;
     private String descrizione;
 }
