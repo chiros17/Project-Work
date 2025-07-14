@@ -34,15 +34,15 @@ public class LibroController
     }
 
     @PutMapping
-    LibroDTO update(@RequestBody String uuid, @RequestBody LibroDTO bookDTO)
+    LibroDTO update(@RequestBody LibroDTO bookDTO)
     {
-        return bookService.update(uuid, bookDTO);
+        return bookService.update(bookDTO.getUuid(), bookDTO);
     }
 
     @PatchMapping
-    LibroDTO partialUpdate(@RequestBody String uuid, @RequestBody LibroDTO bookDTO)
+    LibroDTO partialUpdate(@RequestBody LibroDTO bookDTO)
     {
-        return bookService.partialUpdate(uuid, bookDTO);
+        return bookService.partialUpdate(bookDTO.getUuid(), bookDTO);
     }
 
 }
