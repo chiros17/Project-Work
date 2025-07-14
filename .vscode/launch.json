@@ -1,0 +1,76 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Spring Boot-DiscoveryServerApplication<discovery-server>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "it.profice.corso.discovery_server.DiscoveryServerApplication",
+            "projectName": "discovery-server",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
+        },
+        {
+            "type": "java",
+            "name": "Spring Boot-ApiGatewayApplication<api-gateway>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "it.profice.corso.api_gateway.ApiGatewayApplication",
+            "projectName": "api-gateway",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
+        },
+        {
+            "type": "java",
+            "name": "Spring Boot-UtenteServiceApplication<utente-service>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "it.biblioteca.project_work.utente_service.UtenteServiceApplication",
+            "projectName": "utente-service",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
+        },
+        {
+            "type": "java",
+            "name": "Spring Boot-LibroServiceApplication<libro-service>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "it.biblioteca.project_work.libro_service.LibroServiceApplication",
+            "projectName": "libro-service",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env",
+            "vmArgs": " -Dcom.sun.management.jmxremote -Dcom.sun.management.jmxremote.port=53247 -Dcom.sun.management.jmxremote.authenticate=false -Dcom.sun.management.jmxremote.ssl=false -Dspring.jmx.enabled=true -Djava.rmi.server.hostname=localhost -Dspring.application.admin.enabled=true -Dspring.boot.project.name=libro-service"
+        },
+        {
+            "type": "java",
+            "name": "Spring Boot-PrestitiServiceApplication<prestiti-service>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "it.biblioteca.project_work.prestiti_service.PrestitiServiceApplication",
+            "projectName": "prestiti-service",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env",
+            "vmArgs": " -Dcom.sun.management.jmxremote"
+        },
+        {
+            "type": "java",
+            "name": "Spring Boot-PrenotazioneServiceApplication<prenotazione-service>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "it.project_work.prenotazione.prenotazione_service.PrenotazioneServiceApplication",
+            "projectName": "prenotazione-service",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
+        },
+        {
+            "type": "java",
+            "name": "Spring Boot-RecensioneServiceApplication<recensione-service>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "it.project_work.recensione.recensione_service.RecensioneServiceApplication",
+            "projectName": "recensione-service",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
+        }
+    ]
+}
