@@ -10,11 +10,13 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 
-@Data // annotazione  Lombok che genera automaticamente  il codice boilerplate (usata per i DTO)
+@Data   // annotazione  Lombok che genera automaticamente  il codice boilerplate (usata per i DTO)
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class UtenteDTO {
+public class UtenteDTO
+{
+
     private String uuid;
 
     @NotNull

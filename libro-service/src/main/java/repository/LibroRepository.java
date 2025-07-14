@@ -9,5 +9,6 @@ import java.util.Optional;
 @Repository
 public interface LibroRepository extends JpaRepository<Libro, Long>
 {
+    // Metodo per ottenere un determinato libro tramite l'uuid
     Optional<Libro> findByUuid( String uuid );
 }

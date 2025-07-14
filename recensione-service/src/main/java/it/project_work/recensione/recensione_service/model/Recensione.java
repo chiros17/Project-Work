@@ -22,26 +22,19 @@ import lombok.Setter;
 @AllArgsConstructor
 @NoArgsConstructor
 
-public class Recensione {
+public class Recensione
+{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-
     private String contenuto;
-
-    
     private double stars;
     private String libroUuid;
     private String utenteUuid;
 
-
-      @CreationTimestamp
-    private LocalDateTime dataRecensione ;
-
-
-
-
+    @CreationTimestamp
+    private LocalDateTime dataRecensione;
 
 }

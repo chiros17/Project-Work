@@ -18,6 +18,7 @@ public class LibroServiceImpl implements LibroService
     private final LibroRepository libroRepository;
     // private final WebClient.Builder webClientBuilder;
 
+
     @Override
     public List<LibroDTO> findAll()
     {
@@ -77,6 +78,9 @@ public class LibroServiceImpl implements LibroService
         libroRepository.deleteById(bookToDelete.getId());
     }
 
+    // Metodi di conversione:
+
+    // Da Libro a LibroDTO
     private LibroDTO modelToDto( Libro book )
     {
         return LibroDTO.builder()
@@ -88,6 +92,7 @@ public class LibroServiceImpl implements LibroService
                 .build();
     }
 
+    // Da LibroDTO a Libro
     private Libro dtoToModel( LibroDTO book )
     {
         return Libro.builder()

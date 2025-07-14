@@ -13,11 +13,9 @@ import lombok.NonNull;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class PrestitoDto {
+public class PrestitoDto
+{
 
-
-    
-    
     private String uuid;
 
     private String bookUuid;
@@ -26,11 +24,8 @@ public class PrestitoDto {
 
     private LocalDate dataInizioPrestito;
 
-    
     private LocalDate dataRestituzione;
 
-
     private boolean isRestituito;
-
 
 }

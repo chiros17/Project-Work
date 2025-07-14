@@ -18,10 +18,12 @@ import lombok.Setter;
 @NoArgsConstructor
 @Getter
 @Setter
-public class Prestito {
-
+public class Prestito
+{
     @Id
- 
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
     private String uuid; 
     
     private String bookUuid;
