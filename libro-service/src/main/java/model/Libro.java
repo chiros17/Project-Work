@@ -12,7 +12,7 @@ import lombok.*;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class Book
+public class Libro
 {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -21,6 +21,7 @@ public class Book
     private String uuid;
     private String titolo;
     private String autore;
+    private String copertina;
     private Integer quantita;
     private Double prezzo;
 }
