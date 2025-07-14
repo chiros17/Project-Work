@@ -1,4 +1,4 @@
-package model;
+package it.biblioteca.project_work.libro_service.model;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;

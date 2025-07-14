@@ -1,11 +1,11 @@
-package service;
+package it.biblioteca.project_work.libro_service.service;
 
-import dto.LibroDTO;
-import exception.BookNotFoundException;
+import it.biblioteca.project_work.libro_service.dto.LibroDTO;
+import it.biblioteca.project_work.libro_service.exception.BookNotFoundException;
 import lombok.RequiredArgsConstructor;
-import model.Libro;
+import it.biblioteca.project_work.libro_service.model.Libro;
 import org.springframework.stereotype.Service;
-import repository.LibroRepository;
+import it.biblioteca.project_work.libro_service.repository.LibroRepository;
 
 import java.util.List;
 import java.util.Optional;

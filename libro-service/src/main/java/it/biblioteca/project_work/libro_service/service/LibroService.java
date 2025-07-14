@@ -1,6 +1,6 @@
-package service;
+package it.biblioteca.project_work.libro_service.service;
 
-import dto.LibroDTO;
+import it.biblioteca.project_work.libro_service.dto.LibroDTO;
 
 import java.util.List;
 

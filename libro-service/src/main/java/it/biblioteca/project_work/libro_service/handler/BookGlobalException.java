@@ -1,6 +1,6 @@
-package handler;
+package it.biblioteca.project_work.libro_service.handler;
 
-import exception.BookNotFoundException;
+import it.biblioteca.project_work.libro_service.exception.BookNotFoundException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.MethodArgumentNotValidException;

@@ -1,6 +1,6 @@
-package repository;
+package it.biblioteca.project_work.libro_service.repository;
 
-import model.Libro;
+import it.biblioteca.project_work.libro_service.model.Libro;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

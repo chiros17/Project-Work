@@ -1,4 +1,4 @@
-package dto;
+package it.biblioteca.project_work.libro_service.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

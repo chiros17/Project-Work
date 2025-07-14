@@ -1,10 +1,10 @@
-package controller;
+package it.biblioteca.project_work.libro_service.controller;
 
-import dto.LibroDTO;
+import it.biblioteca.project_work.libro_service.dto.LibroDTO;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.*;
-import service.LibroService;
+import it.biblioteca.project_work.libro_service.service.LibroService;
 
 import java.util.List;
 
