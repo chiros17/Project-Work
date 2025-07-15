@@ -27,10 +27,7 @@ public class UtenteController
 
     //Prende l'intero oggetto  inviato nel corpo del messaggio HTTP
     @PostMapping
-    public UtenteDTO creaUtente( @Valid @RequestBody UtenteDTO utenteDTO)
-    {
-        return utenteService.creaUtente(utenteDTO);
-    }
+    public UtenteDTO creaUtente( @Valid @RequestBody UtenteDTO utenteDTO) { return utenteService.creaUtente(utenteDTO); }
 
     @GetMapping("/{uuid}")
     public UtenteDTO trovaUtente(@PathVariable String uuid) { //Estrae il valore dell'UUID dall'URL e lo mappa alla variabile uuid del metodo.
@@ -41,6 +38,7 @@ public class UtenteController
     public List<UtenteDTO> listaUtenti(){
         return utenteService.listaUtenti();
     }
+
     @DeleteMapping("/{uuid}")
     public void eliminaUtente(@PathVariable String uuid) {// Estrae il valore dell'UUID dall'URL e lo mappa alla variabile uuid del metodo.
         utenteService.eliminaUtente(uuid);

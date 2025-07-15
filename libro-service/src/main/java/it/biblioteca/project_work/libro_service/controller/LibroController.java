@@ -1,6 +1,7 @@
 package it.biblioteca.project_work.libro_service.controller;
 
 import it.biblioteca.project_work.libro_service.dto.LibroDTO;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.*;
@@ -23,10 +24,7 @@ public class LibroController
     }
 
     @PostMapping
-    LibroDTO save(@RequestBody LibroDTO bookDTO)
-    {
-        return bookService.save(bookDTO);
-    }
+    LibroDTO save(@Valid @RequestBody LibroDTO bookDTO) { return bookService.save(bookDTO); }
 
     @DeleteMapping
     void delete(@RequestBody String uuid)
@@ -41,10 +39,9 @@ public class LibroController
     }
 
     @PatchMapping
-    LibroDTO partialUpdate(@RequestBody LibroDTO bookDTO)
-    {
-        return bookService.partialUpdate(bookDTO.getUuid(), bookDTO);
-    }
+    LibroDTO partialUpdate(@RequestBody LibroDTO bookDTO) {  return bookService.partialUpdate(bookDTO.getUuid(), bookDTO); }
 
+    @GetMapping("/{uuid}")
+    LibroDTO getByUuid(@PathVariable String uuid) { return bookService.findByUuid(uuid); }
 }
 

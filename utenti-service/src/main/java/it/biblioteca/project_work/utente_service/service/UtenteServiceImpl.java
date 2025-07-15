@@ -11,48 +11,54 @@ import java.util.UUID;
 
 @RequiredArgsConstructor
 @Service
-public class UtenteServiceImpl implements UtenteService{
+public class UtenteServiceImpl implements UtenteService
+{
     // Iniezione del repository
 
     private final UtenteRepository utenteRepository;
 
-
     @Override
-    public UtenteDTO creaUtente(UtenteDTO utenteDTO) {
-        if (utenteDTO.getUuid() == null || utenteDTO.getUuid().isEmpty()) { // Controlla se l'UUID non è già stato impostato 
+    public UtenteDTO creaUtente(UtenteDTO utenteDTO)
+    {
+        if (utenteDTO.getUuid() == null || utenteDTO.getUuid().isEmpty()) // Controlla se l'UUID non è già stato impostato
+        {
             utenteDTO.setUuid(UUID.randomUUID().toString()); // Genera UUID randomico e lo converte in Stringa
         }
         return modelToDto(utenteRepository.save(dtoToModel(utenteDTO)));
     }
 
     @Override
-    public UtenteDTO trovaUtente(String uuid) {
+    public UtenteDTO trovaUtente(String uuid)
+    {
         // Logica per trovare un utente per ID
         return modelToDto(utenteRepository.findByUuid(uuid).orElseThrow(UserNotFoundException::new)); // se non trovato lanciamo l'exception personalizzata
     }
 
     @Override
-    public List<UtenteDTO> listaUtenti() {
+    public List<UtenteDTO> listaUtenti()
+    {
         // Logica per elencare tutti gli utenti
         return utenteRepository.findAll().stream().map(this::modelToDto).toList();
     }
 
     @Override
-    public void eliminaUtente(String uuid) {
+    public void eliminaUtente(String uuid)
+    {
         // Logica per eliminare un utente
         Utente utente = utenteRepository.findByUuid(uuid).orElseThrow(UserNotFoundException::new);
         utenteRepository.deleteById(utente.getId());
     }
 
     @Override
-    public UtenteDTO autenticaUtente(String username, String password) {
+    public UtenteDTO autenticaUtente(String username, String password)
+    {
         // Logica per autenticare un utente
         return UtenteDTO.builder().build(); 
     }
 
-
     // Conversione da model a Dto
-    private UtenteDTO modelToDto( Utente utente ){
+    private UtenteDTO modelToDto( Utente utente )
+    {
         return UtenteDTO.builder()
                 .uuid(utente.getUuid())
                 .nome(utente.getNome())
@@ -61,9 +67,9 @@ public class UtenteServiceImpl implements UtenteService{
                 .build();
     }
 
-
     // Conversione da Dto a model
-    private Utente dtoToModel( UtenteDTO utente ){
+    private Utente dtoToModel( UtenteDTO utente )
+    {
         return Utente.builder()
                 .uuid(utente.getUuid())
                 .nome(utente.getNome())

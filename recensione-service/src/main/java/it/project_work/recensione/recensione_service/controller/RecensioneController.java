@@ -5,6 +5,7 @@ import it.project_work.recensione.recensione_service.service.IRecensioneService;
 
 import java.util.List;
 
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
@@ -18,20 +19,11 @@ public class RecensioneController
     private final IRecensioneService recensioneService;
     
     @PostMapping
-    public RecensioneDto save(@RequestBody  RecensioneDto recensioneDto)
-    {
-        return recensioneService.save(recensioneDto);
-    }
+    public RecensioneDto save(@Valid @RequestBody RecensioneDto recensioneDto) { return recensioneService.save(recensioneDto); }
 
     @GetMapping
-    public Double average(@RequestParam String libroUuid)
-    {
-        return recensioneService.getAverageByBookUuid(libroUuid);
-    }
+    public Double average(@RequestParam String libroUuid) { return recensioneService.getAverageByBookUuid(libroUuid); }
 
     @GetMapping("/lista")
-    public List<RecensioneDto> getRecensioni(@RequestParam String libroUuid)
-    {
-        return recensioneService.getRecensioniByLibroUuid(libroUuid);
-    }
+    public List<RecensioneDto> getRecensioni(@RequestParam String libroUuid) { return recensioneService.getRecensioniByLibroUuid(libroUuid); }
 }

@@ -21,16 +21,15 @@ public class PrestitoServImpl implements IPrestitoService
     @Override
     public PrestitoDto creaPrestito(PrestitoDto prestitoDto, String utenteUuid, String libroUuid)
     {
-        
-        if (prestitoDto.getUuid() == null)
+
+        if (prestitoDto.getUuid() == null || prestitoDto.getUuid().isEmpty()) // Controlla se l'UUID non è già stato impostato
         {
-            prestitoDto.setUuid(UUID.randomUUID().toString());
+            prestitoDto.setUuid(UUID.randomUUID().toString()); // Genera UUID randomico e lo converte in Stringa
         }
 
         Prestito prestito = dtoToModel(prestitoDto);    // Converte il PrestitoDto in Prestito (model)
 
-        prestito.setDataInizioPrestito(LocalDate.now());    // La data di inizio prestito è la data in cui si avvia il metodo
-        prestito.setRestituito(false);  // ovviamente il prestito non è ancora restituito
+        prestito.setIsRestituito(false);  // ovviamente il prestito non è ancora restituito
         prestito.setDataRestituzione(null);     // inizialmente non c'è una data di restituzione
 
         prestito.setBookUuid(libroUuid);
@@ -48,7 +47,7 @@ public class PrestitoServImpl implements IPrestitoService
         // Se il prestito non esiste, lancia un'eccezione
                 .orElseThrow(PrestitoNotFoundException::new);
 
-        prestito.setRestituito(true);   // Imposta il prestito come restituito
+        prestito.setIsRestituito(true);   // Imposta il prestito come restituito
         prestito.setDataRestituzione(LocalDate.now());  // Imposta la data di restituzione come la data corrente
 
         Prestito updatedPrestito = prestitoRepository.save(prestito);   // Salva le modifiche nel database
@@ -105,7 +104,7 @@ public class PrestitoServImpl implements IPrestitoService
                 .utenteUuid(prestito.getUtenteUuid())
                 .dataInizioPrestito(prestito.getDataInizioPrestito())
                 .dataRestituzione(prestito.getDataRestituzione()) 
-                .isRestituito(prestito.isRestituito())
+                .isRestituito(prestito.getIsRestituito())
                 .build();
     }
 
@@ -118,7 +117,7 @@ public class PrestitoServImpl implements IPrestitoService
                 .utenteUuid(prestitoDto.getUtenteUuid())
                 .dataInizioPrestito(prestitoDto.getDataInizioPrestito())
                 .dataRestituzione(prestitoDto.getDataRestituzione())
-                .isRestituito(prestitoDto.isRestituito())
+                .isRestituito(prestitoDto.getIsRestituito())
                 .build();
     }
 }
