@@ -32,12 +32,16 @@ public class PrenotazioneServiceImpl implements PrenotazioneService
     }
 
     @Override
-    public PrenotazioneDTO save(PrenotazioneDTO prenotazioneDTO)
+    public PrenotazioneDTO save(PrenotazioneDTO prenotazioneDTO, String utenteUuid, String libroUuid)
     {
         if (prenotazioneDTO.getUuid() == null || prenotazioneDTO.getUuid().isEmpty()) // Controlla se l'UUID non è già stato impostato
         {
             prenotazioneDTO.setUuid(UUID.randomUUID().toString()); // Genera UUID randomico e lo converte in Stringa
         }
+
+        prenotazioneDTO.setUtenteUuid(utenteUuid);
+        prenotazioneDTO.setLibroUuid(libroUuid);
+
         return modelToDTO(prenotazioneRepository.save(dtoToModel(prenotazioneDTO)));
     }
 

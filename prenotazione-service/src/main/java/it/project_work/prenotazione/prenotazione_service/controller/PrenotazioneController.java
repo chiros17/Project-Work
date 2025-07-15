@@ -24,7 +24,8 @@ public class PrenotazioneController
     }
 
     @PutMapping
-    public PrenotazioneDTO save(@Valid @RequestBody PrenotazioneDTO prenotazioneDTO) { return prenotazioneService.save(prenotazioneDTO); }
+    public PrenotazioneDTO save(@Valid @RequestBody PrenotazioneDTO prenotazioneDTO, @RequestParam String utenteUuid, @RequestParam String libroUuid)
+    { return prenotazioneService.save(prenotazioneDTO); }
 
     @PatchMapping
     public PrenotazioneDTO update(@RequestBody String uuid, @RequestBody PrenotazioneDTO prenotazioneDTO) { return prenotazioneService.update(uuid, prenotazioneDTO); }

@@ -9,6 +9,6 @@ public interface PrenotazioneService
 {
     List<PrenotazioneDTO> findAll();
     PrenotazioneDTO findByUuid( String uuid );
-    PrenotazioneDTO save( PrenotazioneDTO prenotazione );
+    PrenotazioneDTO save( PrenotazioneDTO prenotazione, String utenteUuid, String libroUuid );
     PrenotazioneDTO update(String uuid, PrenotazioneDTO prenotazione );
 }
