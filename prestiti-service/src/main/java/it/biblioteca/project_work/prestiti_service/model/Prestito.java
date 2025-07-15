@@ -11,6 +11,7 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.annotations.CreationTimestamp;
 
 @Builder
 @Entity
@@ -29,12 +30,13 @@ public class Prestito
     private String bookUuid;
 
     private String utenteUuid;
-    
+
+    @CreationTimestamp
     private LocalDate dataInizioPrestito;
     
     private LocalDate dataRestituzione;
     
-    private boolean isRestituito;
+    private Boolean isRestituito;
 
 
 }

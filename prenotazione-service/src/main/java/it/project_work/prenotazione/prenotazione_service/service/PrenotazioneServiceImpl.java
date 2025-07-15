@@ -8,6 +8,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.UUID;
 
 @Service
 @RequiredArgsConstructor
@@ -33,6 +34,10 @@ public class PrenotazioneServiceImpl implements PrenotazioneService
     @Override
     public PrenotazioneDTO save(PrenotazioneDTO prenotazioneDTO)
     {
+        if (prenotazioneDTO.getUuid() == null || prenotazioneDTO.getUuid().isEmpty()) // Controlla se l'UUID non è già stato impostato
+        {
+            prenotazioneDTO.setUuid(UUID.randomUUID().toString()); // Genera UUID randomico e lo converte in Stringa
+        }
         return modelToDTO(prenotazioneRepository.save(dtoToModel(prenotazioneDTO)));
     }
 

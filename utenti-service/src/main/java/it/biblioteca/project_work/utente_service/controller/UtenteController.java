@@ -2,7 +2,6 @@ package it.biblioteca.project_work.utente_service.controller;
 
 import java.util.List;
 
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -12,8 +11,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import it.biblioteca.project_work.utente_service.dto.LoginRequestDto;
-import it.biblioteca.project_work.utente_service.dto.LoginResponseDto;
 import it.biblioteca.project_work.utente_service.dto.UtenteDTO;
 import it.biblioteca.project_work.utente_service.service.UtenteService;
 import jakarta.validation.Valid;
@@ -30,10 +27,7 @@ public class UtenteController
 
     //Prende l'intero oggetto  inviato nel corpo del messaggio HTTP
     @PostMapping
-    public UtenteDTO creaUtente( @Valid @RequestBody UtenteDTO utenteDTO)
-    {
-        return utenteService.creaUtente(utenteDTO);
-    }
+    public UtenteDTO creaUtente( @Valid @RequestBody UtenteDTO utenteDTO) { return utenteService.creaUtente(utenteDTO); }
 
     @GetMapping("/{uuid}")
     public UtenteDTO trovaUtente(@PathVariable String uuid) { //Estrae il valore dell'UUID dall'URL e lo mappa alla variabile uuid del metodo.
@@ -58,14 +52,14 @@ public class UtenteController
         LoginResponseDto dtoResponse= utenteService.autenticaUtente(loginRequest.getUsername(), loginRequest.getPassword());
 return ResponseEntity.ok(dtoResponse);
     }
-    
+
 
 
 
 
     @PostMapping("/logout")
     public ResponseEntity<String> logout() {
-       
+
 
         return ResponseEntity.ok("Logout effettuato con successo. .");
     }

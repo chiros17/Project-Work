@@ -1,7 +1,9 @@
 package it.biblioteca.project_work.prestiti_service.controller;
 
 import java.util.List;
+import java.util.UUID;
 
+import jakarta.validation.Valid;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -25,7 +27,7 @@ public class PrestitoController
     private final PrestitoServImpl prestitoServImpl;
 
     @PostMapping
-    public PrestitoDto creaPrestito (@RequestBody PrestitoDto prestitoDto, @RequestParam String libroUuid, @RequestParam String utenteUuid)
+    public PrestitoDto creaPrestito (@Valid @RequestBody PrestitoDto prestitoDto, @RequestParam String libroUuid, @RequestParam String utenteUuid)
     {
         return prestitoServImpl.creaPrestito(prestitoDto, utenteUuid, libroUuid);
     }
@@ -49,10 +51,10 @@ public class PrestitoController
     }
 
     @GetMapping("/utente/{utenteUuid}/storico")
-     public List<PrestitoDto> storicoPrestitiUtente(@PathVariable String utenteUuid)
-     {
-         return prestitoServImpl.storicoPrestitiUtente(utenteUuid);
-     }
+    public List<PrestitoDto> storicoPrestitiUtente(@PathVariable String utenteUuid)
+    {
+        return prestitoServImpl.storicoPrestitiUtente(utenteUuid);
+    }
 
     @GetMapping("/libro/{bookUuid}/attivi")
     public List<PrestitoDto> trovaPrestitiAttivi(@PathVariable String bookUuid)
