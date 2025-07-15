@@ -44,7 +44,7 @@ public class UtenteServiceImpl implements UtenteService
     }
 
     @Override
-    public List<UtenteDTO> listaUtenti()
+    public List<UtenteDTO> findAll()
     {
         // Logica per elencare tutti gli utenti
         return utenteRepository.findAll().stream().map(this::modelToDto).toList();

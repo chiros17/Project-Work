@@ -13,12 +13,12 @@ public interface UtenteService
 
     // Metodo per cercare
     UtenteDTO findByUuid(String uuid);
-    List<UtenteDTO> listaUtenti();
+    List<UtenteDTO> findAll();
     void delete(String uuid);
 
    LoginResponseDto autenticaUtente(String username, String password);
 
 }
 
-// Questa interfaccia definisce le operazioni CRUD 
+// Questa interfaccia definisce le operazioni CRUD
 //(Create, Read, Update, Delete) per gli utenti e un metodo di autenticazione:

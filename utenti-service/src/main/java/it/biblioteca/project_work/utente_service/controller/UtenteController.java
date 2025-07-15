@@ -37,7 +37,7 @@ public class UtenteController
     public UtenteDTO findByUuid( @PathVariable String uuid ) { return utenteService.findByUuid(uuid); }
 
     @GetMapping
-    public List<UtenteDTO> listaUtenti() { return utenteService.listaUtenti(); }
+    public List<UtenteDTO> findAll() { return utenteService.findAll(); }
 
     // Estrae il valore dell'UUID dall'URL e lo mappa alla variabile uuid del metodo.
     @DeleteMapping("/{uuid}")

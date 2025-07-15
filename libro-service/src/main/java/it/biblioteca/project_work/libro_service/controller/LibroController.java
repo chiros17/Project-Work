@@ -18,7 +18,7 @@ public class LibroController
     private final LibroService bookService;
 
     @GetMapping
-    List<LibroDTO> mostraLibri()
+    List<LibroDTO> findAll()
     {
         return bookService.findAll();
     }

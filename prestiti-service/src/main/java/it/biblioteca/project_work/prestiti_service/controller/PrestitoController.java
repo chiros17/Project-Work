@@ -27,9 +27,9 @@ public class PrestitoController
     private final PrestitoServImpl prestitoServImpl;
 
     @PostMapping
-    public PrestitoDto creaPrestito (@Valid @RequestBody PrestitoDto prestitoDto, @RequestParam String libroUuid, @RequestParam String utenteUuid)
+    public PrestitoDto save (@Valid @RequestBody PrestitoDto prestitoDto, @RequestParam String libroUuid, @RequestParam String utenteUuid)
     {
-        return prestitoServImpl.creaPrestito(prestitoDto, utenteUuid, libroUuid);
+        return prestitoServImpl.save(prestitoDto, utenteUuid, libroUuid);
     }
 
     @PutMapping("/{prestitoUuid}/restituzione")
@@ -39,21 +39,21 @@ public class PrestitoController
     }
 
     @GetMapping("/{prestitoUuid}")
-    public PrestitoDto trovaPrestito(@PathVariable String prestitoUuid)
+    public PrestitoDto findByUuid(@PathVariable String prestitoUuid)
     {
-        return prestitoServImpl.trovaPrestito(prestitoUuid);
+        return prestitoServImpl.findByUuid(prestitoUuid);
     }
 
     @GetMapping
-    public List <PrestitoDto> showPrestiti()
+    public List <PrestitoDto> findAll()
     {
-        return prestitoServImpl.listaTuttiIPrestiti();
+        return prestitoServImpl.findAll();
     }
 
     @GetMapping("/utente/{utenteUuid}/storico")
-    public List<PrestitoDto> storicoPrestitiUtente(@PathVariable String utenteUuid)
+    public List<PrestitoDto> findByUtenteUuid(@PathVariable String utenteUuid)
     {
-        return prestitoServImpl.storicoPrestitiUtente(utenteUuid);
+        return prestitoServImpl.findByUtenteUuid(utenteUuid);
     }
 
     @GetMapping("/libro/{bookUuid}/attivi")

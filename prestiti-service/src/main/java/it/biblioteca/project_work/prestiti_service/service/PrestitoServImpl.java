@@ -19,7 +19,7 @@ public class PrestitoServImpl implements IPrestitoService
     private final PrestitoRepository prestitoRepository;
 
     @Override
-    public PrestitoDto creaPrestito(PrestitoDto prestitoDto, String utenteUuid, String libroUuid)
+    public PrestitoDto save(PrestitoDto prestitoDto, String utenteUuid, String libroUuid)
     {
 
         if (prestitoDto.getUuid() == null || prestitoDto.getUuid().isEmpty()) // Controlla se l'UUID non è già stato impostato
@@ -55,7 +55,7 @@ public class PrestitoServImpl implements IPrestitoService
     }
 
     @Override
-    public PrestitoDto trovaPrestito(String prestitoUuid)
+    public PrestitoDto findByUuid(String prestitoUuid)
     {
         return modelToDto(
             prestitoRepository.findByUuid(prestitoUuid)
@@ -64,7 +64,7 @@ public class PrestitoServImpl implements IPrestitoService
     }
 
     @Override
-    public List<PrestitoDto> listaTuttiIPrestiti()
+    public List<PrestitoDto> findAll()
     {
         return prestitoRepository.findAll()
                 .stream()
@@ -74,7 +74,7 @@ public class PrestitoServImpl implements IPrestitoService
 
 
     @Override
-    public List<PrestitoDto> storicoPrestitiUtente(String uuidUtente)
+    public List<PrestitoDto> findByUtenteUuid(String uuidUtente)
     {
         return prestitoRepository.findByUtenteUuid(uuidUtente)
                 .stream() // mette in fila tutti i prestiti dell'utente
