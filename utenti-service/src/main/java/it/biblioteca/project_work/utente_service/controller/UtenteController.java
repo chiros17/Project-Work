@@ -2,6 +2,9 @@ package it.biblioteca.project_work.utente_service.controller;
 
 import java.util.List;
 
+import it.biblioteca.project_work.utente_service.dto.LoginRequestDto;
+import it.biblioteca.project_work.utente_service.dto.LoginResponseDto;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -27,42 +30,28 @@ public class UtenteController
 
     //Prende l'intero oggetto  inviato nel corpo del messaggio HTTP
     @PostMapping
-    public UtenteDTO creaUtente( @Valid @RequestBody UtenteDTO utenteDTO) { return utenteService.creaUtente(utenteDTO); }
+    public UtenteDTO save( @Valid @RequestBody UtenteDTO utenteDTO ) { return utenteService.save(utenteDTO); }
 
+    //Estrae il valore dell'UUID dall'URL e lo mappa alla variabile uuid del metodo.
     @GetMapping("/{uuid}")
-    public UtenteDTO trovaUtente(@PathVariable String uuid) { //Estrae il valore dell'UUID dall'URL e lo mappa alla variabile uuid del metodo.
-        return utenteService.trovaUtente(uuid);
-    }
+    public UtenteDTO findByUuid( @PathVariable String uuid ) { return utenteService.findByUuid(uuid); }
 
     @GetMapping
-    public List<UtenteDTO> listaUtenti(){
-        return utenteService.listaUtenti();
-    }
+    public List<UtenteDTO> listaUtenti() { return utenteService.listaUtenti(); }
 
-
+    // Estrae il valore dell'UUID dall'URL e lo mappa alla variabile uuid del metodo.
     @DeleteMapping("/{uuid}")
-    public void eliminaUtente(@PathVariable String uuid) {// Estrae il valore dell'UUID dall'URL e lo mappa alla variabile uuid del metodo.
-        utenteService.eliminaUtente(uuid);
-    }
-
-
+    public void delete(@PathVariable String uuid) { utenteService.delete(uuid); }
 
     @PostMapping("/login")
-    public ResponseEntity<LoginResponseDto> autenticaUtente(@RequestBody LoginRequestDto loginRequest) {
-        LoginResponseDto dtoResponse= utenteService.autenticaUtente(loginRequest.getUsername(), loginRequest.getPassword());
-return ResponseEntity.ok(dtoResponse);
+    public ResponseEntity<LoginResponseDto> autenticaUtente(@RequestBody LoginRequestDto loginRequest)
+    {
+        LoginResponseDto dtoResponse = utenteService.autenticaUtente(loginRequest.getUsername(), loginRequest.getPassword());
+        return ResponseEntity.ok(dtoResponse);
     }
-
-
-
-
 
     @PostMapping("/logout")
-    public ResponseEntity<String> logout() {
-
-
-        return ResponseEntity.ok("Logout effettuato con successo. .");
-    }
+    public ResponseEntity<String> logout() { return ResponseEntity.ok("Logout effettuato con successo. ."); }
 
 }
 

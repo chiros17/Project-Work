@@ -9,12 +9,12 @@ public interface UtenteService
 {
 
     // Metodo per salvare l'utente passato come parametro
-    UtenteDTO creaUtente(UtenteDTO utenteDTO);
+    UtenteDTO save(UtenteDTO utenteDTO);
 
     // Metodo per cercare
-    UtenteDTO trovaUtente(String uuid);
+    UtenteDTO findByUuid(String uuid);
     List<UtenteDTO> listaUtenti();
-    void eliminaUtente(String uuid);
+    void delete(String uuid);
 
    LoginResponseDto autenticaUtente(String username, String password);
 
