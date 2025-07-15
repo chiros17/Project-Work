@@ -19,7 +19,8 @@ public class RecensioneController
     private final IRecensioneService recensioneService;
     
     @PostMapping
-    public RecensioneDto save(@Valid @RequestBody RecensioneDto recensioneDto) { return recensioneService.save(recensioneDto); }
+    public RecensioneDto save(@Valid @RequestBody RecensioneDto recensioneDto, @RequestParam String utenteUuid, @RequestParam String libroUuid)
+    { return recensioneService.save(recensioneDto, utenteUuid, libroUuid); }
 
     @GetMapping
     public Double average(@RequestParam String libroUuid) { return recensioneService.getAverageByBookUuid(libroUuid); }

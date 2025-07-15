@@ -19,12 +19,16 @@ public class RecensioneServImpl implements IRecensioneService
     private final IRecensioneRepo recensioneRepo;
 
     @Override
-    public RecensioneDto save(RecensioneDto recensioneDto)
+    public RecensioneDto save(RecensioneDto recensioneDto, String utenteUuid, String libroUuid)
     {
         if (recensioneDto.getUuid() == null || recensioneDto.getUuid().isEmpty()) // Controlla se l'UUID non è già stato impostato
         {
             recensioneDto.setUuid(UUID.randomUUID().toString()); // Genera UUID randomico e lo converte in Stringa
         }
+
+        recensioneDto.setUtenteUuid(utenteUuid);
+        recensioneDto.setLibroUuid(libroUuid);
+
         return modelToDTO(recensioneRepo.save(dtoToModel(recensioneDto)));
     }
 
