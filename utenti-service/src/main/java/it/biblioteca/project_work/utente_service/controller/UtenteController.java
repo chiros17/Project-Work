@@ -44,6 +44,8 @@ public class UtenteController
     public List<UtenteDTO> listaUtenti(){
         return utenteService.listaUtenti();
     }
+
+
     @DeleteMapping("/{uuid}")
     public void eliminaUtente(@PathVariable String uuid) {// Estrae il valore dell'UUID dall'URL e lo mappa alla variabile uuid del metodo.
         utenteService.eliminaUtente(uuid);
@@ -57,6 +59,17 @@ public class UtenteController
 return ResponseEntity.ok(dtoResponse);
     }
     
+
+
+
+
+    @PostMapping("/logout")
+    public ResponseEntity<String> logout() {
+       
+
+        return ResponseEntity.ok("Logout effettuato con successo. .");
+    }
+
 }
 
 // Il controller ha la sola responsabilità di ricevere le richieste dal client ,Get ,Post ecc... e restituire i valori chiesti
