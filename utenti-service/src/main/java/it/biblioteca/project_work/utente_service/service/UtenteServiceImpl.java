@@ -1,12 +1,16 @@
 package it.biblioteca.project_work.utente_service.service;
 import it.biblioteca.project_work.utente_service.entity.Utente;
+import it.biblioteca.project_work.utente_service.dto.LoginResponseDto;
 import it.biblioteca.project_work.utente_service.dto.UtenteDTO;
+import it.biblioteca.project_work.utente_service.exception.UnauthorizedException;
 import it.biblioteca.project_work.utente_service.exception.UserNotFoundException;
 import it.biblioteca.project_work.utente_service.repository.UtenteRepository;
 import lombok.RequiredArgsConstructor;
+
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
 @RequiredArgsConstructor
@@ -22,6 +26,10 @@ public class UtenteServiceImpl implements UtenteService{
         if (utenteDTO.getUuid() == null || utenteDTO.getUuid().isEmpty()) { // Controlla se l'UUID non è già stato impostato 
             utenteDTO.setUuid(UUID.randomUUID().toString()); // Genera UUID randomico e lo converte in Stringa
         }
+        
+        Utente utenteToSave= dtoToModel(utenteDTO); // Converte il DTO in Model
+        utenteToSave.setUsername(utenteDTO.getUsername());// Imposta il nome utente
+        utenteToSave.setPassword(utenteDTO.getPassword());// Imposta la password
         return modelToDto(utenteRepository.save(dtoToModel(utenteDTO)));
     }
 
@@ -45,9 +53,24 @@ public class UtenteServiceImpl implements UtenteService{
     }
 
     @Override
-    public UtenteDTO autenticaUtente(String username, String password) {
-        // Logica per autenticare un utente
-        return UtenteDTO.builder().build(); 
+    public LoginResponseDto autenticaUtente(String username, String password) {
+         Optional<Utente> userOptional = utenteRepository.findByUsername(username);
+
+        if (userOptional.isPresent()) {
+            Utente utente = userOptional.get();
+            
+            if (utente.getPassword().equals(password)) {
+                return LoginResponseDto.builder()
+                        .uuid(utente.getUuid())
+                        .nome(utente.getNome())
+                        .email(utente.getEmail())
+                        .username(utente.getUsername())
+                        .ruolo(utente.getRuolo())
+                        .build();
+            }
+        }
+        // Se l'utente non è presente o la password non corrisponde, lancia l'eccezione
+        throw new UnauthorizedException("Username o password non validi.");
     }
 
 
@@ -57,6 +80,7 @@ public class UtenteServiceImpl implements UtenteService{
                 .uuid(utente.getUuid())
                 .nome(utente.getNome())
                 .email(utente.getEmail())
+                .username(utente.getUsername())
                 .ruolo(utente.getRuolo())
                 .build();
     }
@@ -68,6 +92,8 @@ public class UtenteServiceImpl implements UtenteService{
                 .uuid(utente.getUuid())
                 .nome(utente.getNome())
                 .email(utente.getEmail())
+                .username(utente.getUsername())
+                .password(utente.getPassword()) 
                 .ruolo(utente.getRuolo())
                 .build();
     }

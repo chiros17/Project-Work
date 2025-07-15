@@ -1,5 +1,6 @@
 package it.biblioteca.project_work.utente_service.service;
 
+import it.biblioteca.project_work.utente_service.dto.LoginResponseDto;
 import it.biblioteca.project_work.utente_service.dto.UtenteDTO;
 
 import java.util.List;
@@ -15,7 +16,7 @@ public interface UtenteService
     List<UtenteDTO> listaUtenti();
     void eliminaUtente(String uuid);
 
-    UtenteDTO autenticaUtente(String username, String password);
+   LoginResponseDto autenticaUtente(String username, String password);
 
 }
 

@@ -16,19 +16,26 @@ import jakarta.validation.constraints.Size;
 @AllArgsConstructor
 public class UtenteDTO
 {
+    private String uuid; 
 
-    private String uuid;
 
-    @NotNull
+   @NotNull
     private String nome;
 
     @NotBlank(message = "L'email dell'utente non può essere vuota.")
-    @Email(message = "Il formato dell'email non è valido.") 
+    @Email(message = "Il formato dell'email non è valido.")
     @Size(max = 100, message = "L'email non può superare i 100 caratteri.")
     private String email;
+
+    @NotBlank(message = "L'username non può essere vuoto.")
+    private String username;
+
+    @NotBlank(message = "La password non può essere vuota.")
+    @Size(min = 6, message = "La password deve avere almeno 6 caratteri.")
+    private String password;
+
     @NotNull
     private Ruolo ruolo;
-
 }
 
 // Questa classe contiene i dati essenziali ed è usata per scambiare informazioni tra i layer

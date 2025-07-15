@@ -2,6 +2,7 @@ package it.biblioteca.project_work.utente_service.controller;
 
 import java.util.List;
 
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -11,6 +12,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import it.biblioteca.project_work.utente_service.dto.LoginRequestDto;
+import it.biblioteca.project_work.utente_service.dto.LoginResponseDto;
 import it.biblioteca.project_work.utente_service.dto.UtenteDTO;
 import it.biblioteca.project_work.utente_service.service.UtenteService;
 import jakarta.validation.Valid;
@@ -46,6 +49,14 @@ public class UtenteController
         utenteService.eliminaUtente(uuid);
     }
 
+
+
+    @PostMapping("/login")
+    public ResponseEntity<LoginResponseDto> autenticaUtente(@RequestBody LoginRequestDto loginRequest) {
+        LoginResponseDto dtoResponse= utenteService.autenticaUtente(loginRequest.getUsername(), loginRequest.getPassword());
+return ResponseEntity.ok(dtoResponse);
+    }
+    
 }
 
 // Il controller ha la sola responsabilità di ricevere le richieste dal client ,Get ,Post ecc... e restituire i valori chiesti
