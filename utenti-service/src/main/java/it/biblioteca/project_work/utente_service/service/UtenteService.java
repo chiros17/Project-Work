@@ -9,16 +9,16 @@ public interface UtenteService
 {
 
     // Metodo per salvare l'utente passato come parametro
-    UtenteDTO creaUtente(UtenteDTO utenteDTO);
+    UtenteDTO save(UtenteDTO utenteDTO);
 
     // Metodo per cercare
-    UtenteDTO trovaUtente(String uuid);
-    List<UtenteDTO> listaUtenti();
-    void eliminaUtente(String uuid);
+    UtenteDTO findByUuid(String uuid);
+    List<UtenteDTO> findAll();
+    void delete(String uuid);
 
    LoginResponseDto autenticaUtente(String username, String password);
 
 }
 
-// Questa interfaccia definisce le operazioni CRUD 
+// Questa interfaccia definisce le operazioni CRUD
 //(Create, Read, Update, Delete) per gli utenti e un metodo di autenticazione:

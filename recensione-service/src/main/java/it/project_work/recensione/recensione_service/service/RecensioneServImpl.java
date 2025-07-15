@@ -2,6 +2,7 @@ package it.project_work.recensione.recensione_service.service;
 
 import java.time.format.DateTimeFormatter;
 import java.util.List;
+import java.util.UUID;
 import java.util.stream.Collectors;
 
 import lombok.RequiredArgsConstructor;
@@ -15,15 +16,16 @@ import it.project_work.recensione.recensione_service.repository.IRecensioneRepo;
 @RequiredArgsConstructor
 public class RecensioneServImpl implements IRecensioneService
 {
-
     private final IRecensioneRepo recensioneRepo;
 
     @Override
     public RecensioneDto save(RecensioneDto recensioneDto)
     {
-        Recensione recensione = dtoToModel(recensioneDto);
-        recensione = recensioneRepo.save(recensione);
-        return modelToDTO(recensione);
+        if (recensioneDto.getUuid() == null || recensioneDto.getUuid().isEmpty()) // Controlla se l'UUID non è già stato impostato
+        {
+            recensioneDto.setUuid(UUID.randomUUID().toString()); // Genera UUID randomico e lo converte in Stringa
+        }
+        return modelToDTO(recensioneRepo.save(dtoToModel(recensioneDto)));
     }
 
     @Override
@@ -46,12 +48,6 @@ public class RecensioneServImpl implements IRecensioneService
                 .collect(Collectors.toList());
     }
 
-
-
-    // Metodi di conversione
-    private static final DateTimeFormatter formatter = DateTimeFormatter.ISO_LOCAL_DATE_TIME;
-
-
     private Recensione dtoToModel(RecensioneDto recensioneDto)
     {
         return Recensione.builder()
@@ -65,17 +61,12 @@ public class RecensioneServImpl implements IRecensioneService
 
     private RecensioneDto modelToDTO(Recensione model)
     {
-        String dataString = null;
-        if (model.getDataRecensione() != null)
-        {
-            dataString = model.getDataRecensione().format(formatter);
-        }
         return RecensioneDto.builder()
             .contenuto(model.getContenuto())
             .stars(model.getStars())
             .libroUuid(model.getLibroUuid())
             .utenteUuid(model.getUtenteUuid())
-            .dataRecensione(dataString)
+            .dataRecensione(model.getDataRecensione())
             .build();
     }
 }

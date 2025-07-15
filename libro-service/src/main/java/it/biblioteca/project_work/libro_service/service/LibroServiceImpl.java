@@ -31,15 +31,17 @@ public class LibroServiceImpl implements LibroService
     @Override
     public LibroDTO findByUuid(String uuid)
     {
-        LibroDTO libroDTO = modelToDto(libroRepository.findByUuid(uuid).orElseThrow(BookNotFoundException::new));
-        return libroDTO;
+        return modelToDto(libroRepository.findByUuid(uuid).orElseThrow(BookNotFoundException::new));
     }
 
     @Override
-    public LibroDTO save(LibroDTO book)
+    public LibroDTO save(LibroDTO bookDto)
     {
-        book.setUuid(UUID.randomUUID().toString());
-        return modelToDto( libroRepository.save( dtoToModel( book ) ) );
+        if (bookDto.getUuid() == null || bookDto.getUuid().isEmpty()) // Controlla se l'UUID non è già stato impostato
+        {
+            bookDto.setUuid(UUID.randomUUID().toString()); // Genera UUID randomico e lo converte in Stringa
+        }
+        return modelToDto( libroRepository.save( dtoToModel( bookDto ) ) );
     }
 
     @Override

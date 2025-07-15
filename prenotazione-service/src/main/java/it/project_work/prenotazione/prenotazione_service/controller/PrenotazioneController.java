@@ -2,10 +2,12 @@ package it.project_work.prenotazione.prenotazione_service.controller;
 
 import it.project_work.prenotazione.prenotazione_service.dto.PrenotazioneDTO;
 import it.project_work.prenotazione.prenotazione_service.service.PrenotazioneService;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.UUID;
 
 @CrossOrigin(origins = "http://localhost:4200")
 @RestController
@@ -22,16 +24,10 @@ public class PrenotazioneController
     }
 
     @PutMapping
-    public PrenotazioneDTO save(PrenotazioneDTO prenotazioneDTO)
-    {
-        return prenotazioneService.save(prenotazioneDTO);
-    }
+    public PrenotazioneDTO save(@Valid @RequestBody PrenotazioneDTO prenotazioneDTO) { return prenotazioneService.save(prenotazioneDTO); }
 
     @PatchMapping
-    public PrenotazioneDTO update(@RequestBody String uuid, @RequestBody PrenotazioneDTO prenotazioneDTO)
-    {
-        return prenotazioneService.update(uuid, prenotazioneDTO);
-    }
+    public PrenotazioneDTO update(@RequestBody String uuid, @RequestBody PrenotazioneDTO prenotazioneDTO) { return prenotazioneService.update(uuid, prenotazioneDTO); }
 
     @GetMapping("/{uuid}")
     public PrenotazioneDTO findByUuid(@PathVariable String uuid)
