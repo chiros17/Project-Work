@@ -1,17 +1,17 @@
 package it.biblioteca.project_work.utente_service.service;
-import it.biblioteca.project_work.utente_service.entity.Utente;
+import java.util.List;
+import java.util.Optional;
+import java.util.UUID;
+
+import org.springframework.stereotype.Service;
+
 import it.biblioteca.project_work.utente_service.dto.LoginResponseDto;
 import it.biblioteca.project_work.utente_service.dto.UtenteDTO;
+import it.biblioteca.project_work.utente_service.entity.Utente;
 import it.biblioteca.project_work.utente_service.exception.UnauthorizedException;
 import it.biblioteca.project_work.utente_service.exception.UserNotFoundException;
 import it.biblioteca.project_work.utente_service.repository.UtenteRepository;
 import lombok.RequiredArgsConstructor;
-
-import org.springframework.stereotype.Service;
-
-import java.util.List;
-import java.util.Optional;
-import java.util.UUID;
 
 @RequiredArgsConstructor
 @Service
@@ -70,11 +70,8 @@ public class UtenteServiceImpl implements UtenteService
             if (utente.getPassword().equals(password))
             {
                 return LoginResponseDto.builder()
-                        .uuid(utente.getUuid())
-                        .nome(utente.getNome())
-                        .email(utente.getEmail())
                         .username(utente.getUsername())
-                        .ruolo(utente.getRuolo())
+                        .password(utente.getPassword())
                         .build();
             }
         }
