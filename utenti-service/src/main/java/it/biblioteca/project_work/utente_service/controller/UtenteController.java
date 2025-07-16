@@ -47,6 +47,7 @@ public class UtenteController
     @PostMapping("/login")
     public ResponseEntity<AuthResponse> autenticaUtente(@RequestBody LoginRequestDto loginRequest)
     {
+        System.out.println("Tentativo login con: " + loginRequest.getUsername());
         AuthResponse dtoResponse = utenteService.autenticaUtente(loginRequest.getUsername(), loginRequest.getPassword());
         return ResponseEntity.ok(dtoResponse);
     }

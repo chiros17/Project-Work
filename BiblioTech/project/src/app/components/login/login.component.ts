@@ -168,7 +168,7 @@ export class LoginComponent {
       next: (response) => {
         this.loading = false;
         console.log('prima di premere il tasto');
-        console.log(response.user);
+        console.log(response)
         if (response.user) {
           this.router.navigate(['/dashboard']);
           console.log('tasto premuto');

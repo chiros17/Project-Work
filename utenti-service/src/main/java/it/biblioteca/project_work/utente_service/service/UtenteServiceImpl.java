@@ -62,40 +62,27 @@ public class UtenteServiceImpl implements UtenteService
     }
 
     @Override
-    public AuthResponse autenticaUtente(String username, String password)
+    public AuthResponse autenticaUtente(String username, String password) 
     {
         Optional<Utente> userOptional = utenteRepository.findByUsername(username);
-        Utente utenteRitornato = null;
-        String token = "";
 
-        if (userOptional.isPresent())
+        if (userOptional.isPresent()) 
         {
             Utente utente = userOptional.get();
 
-            if (utente.getPassword().equals(password))
+            if (utente.getPassword().equals(password)) 
             {
-                utenteRitornato = Utente.builder()
-                        .id(utente.getId())
-                        .uuid(utente.getUuid())
-                        .nome(utente.getNome())
-                        .email(utente.getEmail())
-                        .username(utente.getUsername())
-                        .password(utente.getPassword())
-                        .ruolo(utente.getRuolo())
-                        .build();
-                token = jwtService.generateToken(utenteRitornato.getUsername());
-            }
-            try
-            {
-                return new AuthResponse(modelToDto(utenteRitornato), token);
-            }catch (NullPointerException e)
-            {
-                System.out.printf("Utente non trovato, ritornato valore null ");
-                e.printStackTrace();
+                String token = jwtService.generateToken(utente.getUsername());
+                UtenteDTO dto = modelToDto(utente);
+
+                return AuthResponse.builder()
+                    .token(token)
+                    .utente(dto)
+                    .build();
             }
         }
 
-        // Se l'utente non è presente o la password non corrisponde, lancia l'eccezione
+        // se non torna nulla, lancia eccezione
         throw new UnauthorizedException("Username o password non validi.");
     }
 
