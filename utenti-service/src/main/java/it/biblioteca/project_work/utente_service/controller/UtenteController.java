@@ -45,7 +45,7 @@ public class UtenteController
     public void delete(@PathVariable String uuid) { utenteService.delete(uuid); }
 
     @PostMapping("/login")
-    public ResponseEntity<LoginResponseDto> autenticaUtente(@RequestBody LoginRequestDto loginRequest)
+    public ResponseEntity<AuthResponse> autenticaUtente(@RequestBody LoginRequestDto loginRequest)
     {
         LoginResponseDto dtoResponse = utenteService.autenticaUtente(loginRequest.getUsername(), loginRequest.getPassword());
         return ResponseEntity.ok(dtoResponse);

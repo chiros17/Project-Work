@@ -3,10 +3,14 @@ import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
+
 import org.springframework.stereotype.Service;
 
+import it.biblioteca.project_work.utente_service.controller.AuthResponse;
+import it.biblioteca.project_work.utente_service.controller.IUtente;
 import it.biblioteca.project_work.utente_service.dto.LoginResponseDto;
 import it.biblioteca.project_work.utente_service.dto.UtenteDTO;
+import it.biblioteca.project_work.utente_service.entity.Ruolo;
 import it.biblioteca.project_work.utente_service.entity.Utente;
 import it.biblioteca.project_work.utente_service.exception.UnauthorizedException;
 import it.biblioteca.project_work.utente_service.exception.UserNotFoundException;
@@ -21,6 +25,8 @@ public class UtenteServiceImpl implements UtenteService
     // Iniezione del repository
 
     private final UtenteRepository utenteRepository;
+
+
 
     @Override
     public UtenteDTO save(UtenteDTO utenteDTO)
@@ -59,9 +65,10 @@ public class UtenteServiceImpl implements UtenteService
     }
 
     @Override
-    public LoginResponseDto autenticaUtente(String username, String password)
+    public AuthResponse autenticaUtente(String username, String password)
     {
         Optional<Utente> userOptional = utenteRepository.findByUsername(username);
+        Utente utenteRitornato;
 
         if (userOptional.isPresent())
         {
@@ -69,11 +76,19 @@ public class UtenteServiceImpl implements UtenteService
 
             if (utente.getPassword().equals(password))
             {
-                return LoginResponseDto.builder()
-                        .username(utente.getUsername())
-                        .password(utente.getPassword())
-                        .build();
+                utenteRitornato = new Utente(
+                    userOptional.get().getId(), 
+                    userOptional.get().getUuid(), 
+                    userOptional.get().getNome(), 
+                    userOptional.get().getEmail(), 
+                    userOptional.get().getUsername(),
+                    userOptional.get().getPassword(),
+                    userOptional.get().getRuolo()
+                );
+                        
             }
+
+            //String token = jwtService.generateToken(userDto);
         }
 
         // Se l'utente non è presente o la password non corrisponde, lancia l'eccezione
