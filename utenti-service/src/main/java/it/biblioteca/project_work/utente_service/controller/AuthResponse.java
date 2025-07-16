@@ -8,10 +8,11 @@ import lombok.Data;
 @Data
 @AllArgsConstructor
 @Builder
-public class AuthResponse {
+public class AuthResponse
+{
 
     public UtenteDTO utente;
-    public String tokendimerda;
+    public String token;
 
 }
 
