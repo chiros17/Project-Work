@@ -1,0 +1,154 @@
+/* src/app/libro/libro.component.css */
+
+/* Definizione delle variabili CSS per i colori */
+:root {
+  --color-mattone: #A52A2A;   /* Un rosso-marrone, come il mattone */
+  --color-bordeaux: #800020;  /* Un rosso scuro e profondo */
+  --color-panna: #F5F5DC;    /* Un beige chiaro, quasi bianco */
+  --color-dark-text: #333;   /* Colore testo scuro per contrasto */
+  --color-light-text: #fff;  /* Colore testo chiaro */
+  --color-border: #ddd;      /* Bordo generico */
+  --color-hover-light: #e0e0e0; /* Colore per hover su elementi chiari */
+}
+
+.libro-container {
+  padding: 20px;
+  max-width: 900px;
+  margin: 20px auto;
+  background-color: var(--color-panna); /* Sfondo principale color panna */
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Ombra più pronunciata */
+}
+
+h2, h3 {
+  color: var(--color-bordeaux); /* Titoli color bordeaux */
+  margin-bottom: 15px;
+  border-bottom: 2px solid var(--color-mattone); /* Sottolineatura color mattone */
+  padding-bottom: 10px;
+}
+
+.card {
+  background-color: var(--color-light-text); /* Sfondo delle card bianco/panna chiaro */
+  border: 1px solid var(--color-mattone); /* Bordo delle card color mattone */
+  border-radius: 8px;
+  padding: 20px;
+  margin-bottom: 20px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+  color: var(--color-dark-text);
+}
+
+.form-group input[type="text"],
+.form-group input[type="number"] {
+  width: calc(100% - 22px);
+  padding: 10px;
+  border: 1px solid var(--color-bordeaux); /* Bordo input color bordeaux */
+  border-radius: 4px;
+  font-size: 1rem;
+  color: var(--color-dark-text);
+}
+
+.btn {
+  padding: 10px 15px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background-color 0.3s ease, transform 0.1s ease;
+  margin-right: 10px;
+  color: var(--color-light-text); /* Testo bottoni chiaro per contrasto */
+}
+
+/* Colori specifici per i bottoni in base al tema */
+.btn-primary {
+  background-color: var(--color-bordeaux); /* Bottone principale bordeaux */
+}
+
+.btn-primary:hover {
+  background-color: #6a001a; /* Tonalità più scura del bordeaux all'hover */
+  transform: translateY(-1px);
+}
+
+.btn-success {
+  background-color: var(--color-mattone); /* Bottone aggiungi mattone */
+}
+
+.btn-success:hover {
+  background-color: #8B0000; /* Tonalità più scura del mattone all'hover */
+  transform: translateY(-1px);
+}
+
+.btn-danger {
+  background-color: #DC3545; /* Mantenuto rosso standard per "elimina" per chiarezza di UX */
+  color: white; /* Testo bianco */
+}
+
+.btn-danger:hover {
+  background-color: #C82333;
+}
+
+.btn-info {
+  background-color: #704214; /* Marrone scuro/ruggine per "modifica" */
+  color: white;
+}
+
+.btn-info:hover {
+  background-color: #5A3511;
+}
+
+.btn-secondary {
+  background-color: #6c757d; /* Grigio standard per "annulla/torna" */
+  color: white;
+}
+
+.btn-secondary:hover {
+  background-color: #5a6268;
+}
+
+.btn-sm {
+    padding: 5px 10px;
+    font-size: 0.875rem;
+}
+
+.libri-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+.libri-table th,
+.libri-table td {
+  border: 1px solid var(--color-border);
+  padding: 10px;
+  text-align: left;
+}
+
+.libri-table th {
+  background-color: var(--color-mattone); /* Intestazione tabella color mattone */
+  color: var(--color-light-text); /* Testo intestazione tabella bianco */
+  font-weight: bold;
+}
+
+.libri-table tbody tr:nth-child(even) {
+  background-color: #f7f0e8; /* Riga pari un panna leggermente più scuro */
+}
+
+.libri-table tbody tr:hover {
+  background-color: var(--color-hover-light); /* Hover sulle righe */
+}
+
+hr {
+    border: 0;
+    height: 1px;
+    background-color: var(--color-bordeaux); /* Linea divisoria color bordeaux */
+    margin: 30px 0;
+}
