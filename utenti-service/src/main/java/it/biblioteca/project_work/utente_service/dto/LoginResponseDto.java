@@ -13,10 +13,11 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class LoginResponseDto {
 
-    private String uuid;
-    private String nome;
-    private String email;
+    //private String uuid;
+    //private String nome;
+    //private String email;
     private String username;
-    private Ruolo ruolo;
+    //private Ruolo ruolo;
+    private String password;
 }
 // Questa classe rappresenta la risposta di login e contiene i campi uuid, nome, email, username e ruolo.
