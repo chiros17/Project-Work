@@ -1,0 +1,84 @@
+<div class="libro-container">
+  <h2>Catalogo Libri</h2>
+
+  <div class="card add-book-form">
+    <h3>Aggiungi Nuovo Libro</h3>
+    <form (ngSubmit)="addLibro()">
+      <div class="form-group">
+        <label for="titolo">Titolo:</label>
+        <input type="text" id="titolo" [(ngModel)]="newLibro.titolo" name="titolo" required>
+      </div>
+      <div class="form-group">
+        <label for="autore">Autore:</label>
+        <input type="text" id="autore" [(ngModel)]="newLibro.autore" name="autore" required>
+      </div>
+      <div class="form-group">
+        <label for="quantita">Quantità:</label>
+        <input type="number" id="quantita" [(ngModel)]="newLibro.quantita" name="quantita" required>
+      </div>
+      <div class="form-group">
+        <label for="prezzo">Prezzo:</label>
+        <input type="number" id="prezzo" [(ngModel)]="newLibro.prezzo" name="prezzo" step="0.01" required>
+      </div>
+      <button type="submit" class="btn btn-success">Aggiungi Libro</button>
+    </form>
+  </div>
+
+  <hr>
+
+  <div *ngIf="showEditForm && selectedLibro" class="card edit-book-form">
+    <h3>Modifica Libro: {{ selectedLibro.titolo }}</h3>
+    <form (ngSubmit)="updateLibro()">
+      <input type="hidden" [(ngModel)]="selectedLibro.id" name="id">
+      <input type="hidden" [(ngModel)]="selectedLibro.uuid" name="uuid"> <div class="form-group">
+        <label for="editTitolo">Titolo:</label>
+        <input type="text" id="editTitolo" [(ngModel)]="selectedLibro.titolo" name="editTitolo" required>
+      </div>
+      <div class="form-group">
+        <label for="editAutore">Autore:</label>
+        <input type="text" id="editAutore" [(ngModel)]="selectedLibro.autore" name="editAutore" required>
+      </div>
+      <div class="form-group">
+        <label for="editQuantita">Quantità:</label>
+        <input type="number" id="editQuantita" [(ngModel)]="selectedLibro.quantita" name="editQuantita" required>
+      </div>
+      <div class="form-group">
+        <label for="editPrezzo">Prezzo:</label>
+        <input type="number" id="editPrezzo" [(ngModel)]="selectedLibro.prezzo" name="editPrezzo" step="0.01" required>
+      </div>
+      <button type="submit" class="btn btn-primary">Salva Modifiche</button>
+      <button type="button" class="btn btn-secondary" (click)="cancelEdit()">Annulla</button>
+    </form>
+  </div>
+
+  <hr *ngIf="showEditForm">
+
+  <h3>Elenco Libri</h3>
+  <div *ngIf="libri.length === 0">Nessun libro disponibile.</div>
+  <table *ngIf="libri.length > 0" class="libri-table">
+    <thead>
+      <tr>
+        <th>Titolo</th>
+        <th>Autore</th>
+        <th>Quantità</th>
+        <th>Prezzo</th>
+        <th>Azioni</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let libro of libri">
+        <td>{{ libro.titolo }}</td>
+        <td>{{ libro.autore }}</td>
+        <td>{{ libro.quantita }}</td>
+        <td>{{ libro.prezzo | currency:'EUR':'symbol':'1.2-2' }}</td>
+        <td>
+          <button class="btn btn-info btn-sm" (click)="editLibro(libro)">Modifica</button>
+          <button class="btn btn-danger btn-sm" (click)="deleteLibro(libro.id)">Elimina</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <hr>
+  <button routerLink="/dashboard" class="btn btn-secondary">Torna alla Dashboard</button>
+</div>

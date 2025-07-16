@@ -18,7 +18,7 @@ public class UtenteDTO
     private String uuid; 
 
 
-   
+    
     private String nome;
 
     //NotBlank(message = "L'email dell'utente non può essere vuota.")
