@@ -19,7 +19,7 @@ public class UtenteDTO
     private String uuid; 
 
 
-   @NotNull
+    @NotNull
     private String nome;
 
     @NotBlank(message = "L'email dell'utente non può essere vuota.")
