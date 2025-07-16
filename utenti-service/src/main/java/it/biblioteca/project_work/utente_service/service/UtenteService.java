@@ -1,9 +1,9 @@
 package it.biblioteca.project_work.utente_service.service;
 
-import it.biblioteca.project_work.utente_service.dto.LoginResponseDto;
-import it.biblioteca.project_work.utente_service.dto.UtenteDTO;
-
 import java.util.List;
+
+import it.biblioteca.project_work.utente_service.controller.AuthResponse;
+import it.biblioteca.project_work.utente_service.dto.UtenteDTO;
 
 public interface UtenteService
 {
@@ -16,7 +16,7 @@ public interface UtenteService
     List<UtenteDTO> findAll();
     void delete(String uuid);
 
-   LoginResponseDto autenticaUtente(String username, String password);
+   AuthResponse autenticaUtente(String username, String password);
 
 }
 
