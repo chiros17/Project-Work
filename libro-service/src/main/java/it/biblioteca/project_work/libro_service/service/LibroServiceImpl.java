@@ -8,7 +8,6 @@ import org.springframework.stereotype.Service;
 import it.biblioteca.project_work.libro_service.repository.LibroRepository;
 
 import java.util.List;
-import java.util.Optional;
 import java.util.UUID;
 
 @Service
@@ -76,9 +75,7 @@ public class LibroServiceImpl implements LibroService
     @Override
     public void deleteByUuid(String uuid)
     {
-        System.err.println("\u001B[31m[DELETE] Book to delete: " + "\nSto cancellando\n" + "\u001B[0m");
         Libro bookToDelete = libroRepository.findByUuid( uuid ).orElseThrow(BookNotFoundException::new);
-        System.err.println("\u001B[31m[DELETE] Book to delete: " + bookToDelete + "\u001B[0m");
         libroRepository.deleteById(bookToDelete.getId());
     }
 
