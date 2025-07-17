@@ -2,13 +2,14 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject, Observable, of, throwError } from 'rxjs';
 import { tap, catchError } from 'rxjs/operators';
-import { User, UserLogin, AuthResponse } from '../models/user.model';
+import { User, UserLogin, AuthResponse, VediUtente } from '../models/user.model';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
   private apiUrl = 'http://localhost:8081/api/v1/utenti/login';
+  private apiUrl2 = 'http://localhost:8081/api/v1/utenti';
   private currentUserSubject = new BehaviorSubject<User | null>(null);
   public currentUser$ = this.currentUserSubject.asObservable();
 
@@ -35,6 +36,8 @@ export class AuthService {
       localStorage.removeItem('token');
     }
   }
+
+  
 
   login(credentials: UserLogin): Observable<AuthResponse> {
     return this.http.post<AuthResponse>(this.apiUrl, credentials).pipe(
@@ -80,5 +83,19 @@ export class AuthService {
     const user = this.getCurrentUser();
     console.log("è studente", user?.ruolo);
     return user?.ruolo === 'STUDENTE';
+  }
+
+  getAllUtenti(): Observable<VediUtente[]> {
+    // Potresti voler aggiungere un'intestazione di autorizzazione se l'API lo richiede
+    // const headers = new HttpHeaders().set('Authorization', `Bearer ${this.getToken()}`);
+    // return this.http.get<VediUtente[]>(this.apiUrl2, { headers: headers }).pipe(
+
+    return this.http.get<VediUtente[]>(this.apiUrl2).pipe(
+      tap(utenti => console.log('Utenti recuperati:', utenti)),
+      catchError(error => {
+        console.error('Errore durante il recupero degli utenti:', error);
+        return throwError(() => error);
+      })
+    );
   }
 }

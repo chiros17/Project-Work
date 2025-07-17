@@ -7,6 +7,7 @@ import { RoleGuard } from './guards/role.guard';
 import { Libro } from './components/libro/libro';
 import { MieiPrestiti } from './components/miei-prestiti/miei-prestiti';
 import { StudenteCatalogo } from './components/studente.catalogo/studente.catalogo';
+import { GestioneUtenti } from './components/gestione-utenti/gestione-utenti';
 
 export const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -19,6 +20,10 @@ export const routes: Routes = [
   { 
     path: 'studente_catalogo', 
     component: StudenteCatalogo,
+  },
+  { 
+    path: 'gestione_utenti', 
+    component: GestioneUtenti,
   },
   {
         path:'libro',

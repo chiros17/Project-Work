@@ -5,8 +5,8 @@ h3 {
   font-size: 24px;
 }
 
-.libri-table {
-  width: 90%;
+.utenti-table {
+  width: 70%;
   margin: 0 auto 30px auto;
   border-collapse: collapse;
   background-color: #fef5e7; /* panna */
@@ -14,25 +14,25 @@ h3 {
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
-.libri-table th,
-.libri-table td {
+.utenti-table th,
+.utenti-table td {
   padding: 12px 16px;
   border: 1px solid #b04a30; /* mattone */
   text-align: left;
 }
 
-.libri-table th {
+.utenti-table th {
   background-color: #b04a30; /* mattone */
   color: #fff;
   text-transform: uppercase;
   font-size: 14px;
 }
 
-.libri-table tr:nth-child(even) {
+.utenti-table tr:nth-child(even) {
   background-color: #fbeee0; /* panna leggermente più scura */
 }
 
-.libri-table tr:hover {
+.utenti-table tr:hover {
   background-color: #f2d9cb; /* effetto hover tenue */
   transition: background-color 0.3s ease;
 }
@@ -43,17 +43,4 @@ div[ngIf] {
   margin-top: 20px;
   font-style: italic;
   font-size: 16px;
-}
-
-button.btn {
-  display: block;
-  margin: 0 auto;
-  padding: 10px 20px;
-  font-size: 16px;
-  border: none;
-  color: #fff;
-  background-color: #6b1f1f; /* bordeaux */
-  border-radius: 5px;
-  cursor: pointer;
-  transition: backgro
 }

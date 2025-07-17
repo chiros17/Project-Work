@@ -1,0 +1,16 @@
+<h3>Elenco Utente</h3>
+  <div *ngIf="utenti.length === 0">Nessun utente disponibile.</div>
+  <table *ngIf="utenti.length > 0" class="utenti-table">
+    <thead>
+      <tr>
+        <th>Nome</th>
+        <th>Username</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let utente of utenti">
+        <td>{{ utente.nome }}</td>
+        <td>{{ utente.username }}</td>
+      </tr>
+    </tbody>
+  </table>

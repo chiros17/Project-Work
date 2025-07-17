@@ -25,3 +25,8 @@ export interface UserForm {
   password: string;
   ruolo: 'BIBLIOTECARIO' | 'STUDENTE';
 }
+
+export interface VediUtente {
+  nome: string;
+  username: string;
+}

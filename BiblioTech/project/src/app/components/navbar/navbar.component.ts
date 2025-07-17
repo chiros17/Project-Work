@@ -27,9 +27,10 @@ import { User } from '../../models/user.model';
             <a routerLink="/dashboard" class="nav-link">Dashboard</a>
             
             <div *ngIf="isBibliotecario()" class="admin-links">
-              <a routerLink="/admin/utenti" class="nav-link">Gestione Utenti</a>
-              <a routerLink="/admin/libri" class="nav-link">Gestione Libri</a>
-              <a routerLink="/admin/prestiti" class="nav-link">Gestione Prestiti</a>
+              <a  *ngIf="isBibliotecario()" routerLink="/gestione_utenti" class="nav-link">Gestione Utenti</a>
+              <a  *ngIf="isBibliotecario()"routerLink="/libro" class="nav-link">Gestione Libri</a>
+              <a  *ngIf="isStudente()" routerLink="/catalogo_libri" class="nav-link">Catalogo Libri</a>
+              <a  *ngIf="isStudente()" routerLink="/miei-prestiti" class="nav-link">Prestiti</a>
             </div>
             
             <button (click)="logout()" class="logout-btn">Logout</button>
@@ -129,5 +130,9 @@ export class NavbarComponent implements OnInit {
 
   isBibliotecario(): boolean {
     return this.authService.isBibliotecario();
+  }
+
+  isStudente(): boolean {
+    return this.authService.isStudente();
   }
 }

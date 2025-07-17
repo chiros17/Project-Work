@@ -34,7 +34,7 @@ import { forkJoin } from 'rxjs';
       </div>
       
       <div class="actions-grid">
-        <div class="action-card">
+        <div  *ngIf="isBibliotecario()" class="action-card">
           <h3>Catalogo Libri</h3>
           <p>Esplora il catalogo completo dei libri disponibili</p>
           <a routerLink="/libro" class="btn btn-primary">Visualizza Catalogo</a>
@@ -43,7 +43,7 @@ import { forkJoin } from 'rxjs';
         <div *ngIf="isBibliotecario()" class="action-card">
           <h3>Gestione Utenti</h3>
           <p>Gestisci gli utenti del sistema</p>
-          <a routerLink="/admin/utenti" class="btn btn-primary">Gestisci Utenti</a>
+          <a routerLink="/gestione_utenti" class="btn btn-primary">Gestisci Utenti</a>
         </div>
         
         <div *ngIf="isStudente()" class="action-card">
@@ -52,7 +52,7 @@ import { forkJoin } from 'rxjs';
           <a routerLink="/studente_catalogo" class="btn btn-primary">Catalogo</a>
         </div>
         
-        <div class="action-card">
+        <div  *ngIf="isStudente()" class="action-card">
           <h3>I Miei Prestiti</h3>
           <p>Visualizza i tuoi prestiti attivi e la cronologia</p>
           <a routerLink="/miei-prestiti" class="btn btn-primary">Visualizza Prestiti</a>
