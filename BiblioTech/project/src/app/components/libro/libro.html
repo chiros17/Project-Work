@@ -5,6 +5,10 @@
     <h3>Aggiungi Nuovo Libro</h3>
     <form (ngSubmit)="addLibro()">
       <div class="form-group">
+        <label for="titolo">Id:</label>
+        <input type="text" id="id" [(ngModel)]="newLibro.id" name="id" required>
+      </div>
+      <div class="form-group">
         <label for="titolo">Titolo:</label>
         <input type="text" id="titolo" [(ngModel)]="newLibro.titolo" name="titolo" required>
       </div>

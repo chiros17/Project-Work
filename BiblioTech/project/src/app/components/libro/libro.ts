@@ -17,6 +17,7 @@ export class Libro implements OnInit {
   libri: LibroModel[] = [];
   selectedLibro: LibroModel | null = null; // Per la modifica o visualizzazione dettagli
   newLibro: LibroForm = {  // Modello per il form di creazione
+    id: 0,
     titolo: '',
     autore: '',
     quantita: 0,
@@ -71,6 +72,7 @@ export class Libro implements OnInit {
     if (this.selectedLibro && this.selectedLibro.id) {
       // Nota: Potresti voler mappare selectedLibro a LibroForm se le interfacce sono diverse
       const libroToUpdate: LibroForm = {
+        id: this.selectedLibro.id,
         titolo: this.selectedLibro.titolo,
         autore: this.selectedLibro.autore,
         quantita: this.selectedLibro.quantita,
@@ -122,6 +124,7 @@ export class Libro implements OnInit {
   // Resetta il form per l'aggiunta di un nuovo libro
   resetNewLibroForm(): void {
     this.newLibro = {
+      id: 0,
       titolo: '',
       autore: '',
       quantita: 0,

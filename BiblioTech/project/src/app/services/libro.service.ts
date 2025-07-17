@@ -7,7 +7,7 @@ import { LibroModel, LibroForm } from '../models/libro.model';
   providedIn: 'root'
 })
 export class LibroService {
-  private apiUrl = 'http://localhost:8082/api/v1/libri';
+  private apiUrl = 'http://localhost:8082/api/v1/libro';
 
   constructor(private http: HttpClient) {}
   /*

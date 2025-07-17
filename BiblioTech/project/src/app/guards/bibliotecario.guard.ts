@@ -13,7 +13,7 @@ export class BibliotecarioGuard implements CanActivate {
 
   canActivate(): boolean {
     if (this.authService.isBibliotecario()) {
-      this.router.navigate(['/dashboard']);
+      //this.router.navigate(['/dashboard']);
       console.log('sto qui');
       return true;
     }
