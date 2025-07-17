@@ -88,6 +88,7 @@ public class LibroServiceImpl implements LibroService
                 .uuid(book.getUuid())
                 .autore(book.getAutore())
                 .titolo(book.getTitolo())
+                .quantita(book.getQuantita())
                 .prezzo(book.getPrezzo())
                 .build();
     }
@@ -99,6 +100,7 @@ public class LibroServiceImpl implements LibroService
                 .uuid(book.getUuid())
                 .autore(book.getAutore())
                 .titolo(book.getTitolo())
+                .quantita(book.getQuantita())
                 .prezzo(book.getPrezzo())
                 .build();
     }

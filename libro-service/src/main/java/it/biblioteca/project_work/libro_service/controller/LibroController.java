@@ -43,10 +43,7 @@ public class LibroController
     void delete(@PathVariable String uuid) { bookService.deleteByUuid(uuid); }
 
     @PutMapping
-    LibroDTO update(@RequestBody LibroDTO bookDTO)
-    {
-        return bookService.update(bookDTO.getUuid(), bookDTO);
-    }
+    LibroDTO update(@RequestBody LibroDTO bookDTO) { return bookService.update(bookDTO.getUuid(), bookDTO); }
 
     @PatchMapping
     LibroDTO partialUpdate(@RequestBody LibroDTO bookDTO) {  return bookService.partialUpdate(bookDTO.getUuid(), bookDTO); }
