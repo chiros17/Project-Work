@@ -1,0 +1,24 @@
+<h3>Elenco Libri</h3>
+  <div *ngIf="libri.length === 0">Nessun libro disponibile.</div>
+  <table *ngIf="libri.length > 0" class="libri-table">
+    <thead>
+      <tr>
+        <th>Titolo</th>
+        <th>Autore</th>
+        <th>Quantità</th>
+        <th>Prezzo</th>
+        <th>Azioni</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let libro of libri">
+        <td>{{ libro.titolo }}</td>
+        <td>{{ libro.autore }}</td>
+        <td>{{ libro.quantita }}</td>
+        <td>{{ libro.prezzo | currency:'EUR':'symbol':'1.2-2' }}</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <hr>
+  <button routerLink="/dashboard" class="btn btn-secondary">Torna alla Dashboard</button>

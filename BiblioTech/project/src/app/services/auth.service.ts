@@ -78,6 +78,7 @@ export class AuthService {
 
   isStudente(): boolean {
     const user = this.getCurrentUser();
+    console.log("è studente", user?.ruolo);
     return user?.ruolo === 'STUDENTE';
   }
 }

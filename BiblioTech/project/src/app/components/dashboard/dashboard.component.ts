@@ -46,10 +46,10 @@ import { forkJoin } from 'rxjs';
           <a routerLink="/admin/utenti" class="btn btn-primary">Gestisci Utenti</a>
         </div>
         
-        <div *ngIf="isBibliotecario()" class="action-card">
-          <h3>Gestione Libri</h3>
-          <p>Aggiungi, modifica o rimuovi libri dal catalogo</p>
-          <a routerLink="/admin/libri" class="btn btn-primary">Gestisci Libri</a>
+        <div *ngIf="isStudente()" class="action-card">
+          <h3>Catalogo Libri</h3>
+          <p>Sfoglia il catalogo</p>
+          <a routerLink="/studente_catalogo" class="btn btn-primary">Catalogo</a>
         </div>
         
         <div class="action-card">
@@ -173,5 +173,8 @@ export class DashboardComponent implements OnInit {
 
   isBibliotecario(): boolean {
     return this.authService.isBibliotecario();
+  }
+  isStudente(): boolean {
+    return this.authService.isStudente();
   }
 }

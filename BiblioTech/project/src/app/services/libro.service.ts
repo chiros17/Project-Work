@@ -54,8 +54,12 @@ export class LibroService {
     );
   }
 
-  updateLibro(uuid: string, libro: LibroForm): Observable<LibroModel> {
-    return this.http.put<LibroModel>(`${this.apiUrl}/${uuid}`, libro);
+  updateLibro(libro: LibroForm): Observable<LibroModel> {
+    return this.http.put<LibroModel>(`${this.apiUrl}`, libro).pipe(
+      catchError(err => {console.error("Messaggio errore, errore modifica", err, libro);
+        return throwError(() => new Error("Messaggio di errore casuale"))
+      })
+    );
   }
 
   deleteLibro(uuid: string): Observable<void> {

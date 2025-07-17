@@ -70,7 +70,8 @@ export class Libro implements OnInit {
 
   // UPDATE (Aggiorna un libro esistente)
   updateLibro(): void {
-    if (this.selectedLibro && this.selectedLibro.id) {
+    if (this.selectedLibro && this.selectedLibro.uuid) {
+      console.log("ho cliccato");
       // Nota: Potresti voler mappare selectedLibro a LibroForm se le interfacce sono diverse
       const libroToUpdate: LibroForm = {
         uuid: this.selectedLibro.uuid,
@@ -80,11 +81,11 @@ export class Libro implements OnInit {
         prezzo: this.selectedLibro.prezzo
       };
 
-      this.libroService.updateLibro(this.selectedLibro.uuid, libroToUpdate).subscribe({
+      this.libroService.updateLibro(libroToUpdate).subscribe({
         next: (libroAggiornato) => {
           console.log('Libro aggiornato con successo:', libroAggiornato);
           // Trova il libro nell'array e aggiornalo
-          const index = this.libri.findIndex(l => l.id === libroAggiornato.id);
+          const index = this.libri.findIndex(l => l.uuid === libroAggiornato.uuid);
           if (index !== -1) {
             this.libri[index] = libroAggiornato;
           }

@@ -177,6 +177,7 @@ export class LoginComponent {
       error: (error) => {
         this.loading = false;
         console.error('Errore login:', error);
+        console.log(this.credentials);
       }
     });
   }

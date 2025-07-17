@@ -7,11 +7,12 @@ import { RouterOutlet } from '@angular/router';
 
 import { routes } from './app/app.routes';
 import { NavbarComponent } from './app/components/navbar/navbar.component';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [CommonModule, RouterOutlet, RouterLink, RouterLinkActive, NavbarComponent],
+  imports: [CommonModule, RouterOutlet, RouterLink, RouterLinkActive, NavbarComponent, FormsModule],
   template: `
     <div class="app-container">
       <app-navbar></app-navbar>
