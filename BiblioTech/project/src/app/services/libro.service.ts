@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable, of } from 'rxjs';
+import { catchError, Observable, of, throwError } from 'rxjs';
 import { LibroModel, LibroForm } from '../models/libro.model';
 
 @Injectable({
@@ -42,19 +42,27 @@ export class LibroService {
     return this.http.get<LibroModel[]>(this.apiUrl); // Rimuovi 'of(mockLibri)'
   }
 
-  getLibroById(id: number): Observable<LibroModel> {
-    return this.http.get<LibroModel>(`${this.apiUrl}/${id}`);
+  getLibroById(uuid: string): Observable<LibroModel> {
+    return this.http.get<LibroModel>(`${this.apiUrl}/${uuid}`);
   }
 
   createLibro(libro: LibroForm): Observable<LibroModel> {
-    return this.http.post<LibroModel>(`${this.apiUrl}/`, libro);
+    return this.http.post<LibroModel>(`${this.apiUrl}`, libro).pipe(
+      catchError(err => {console.error("Messaggio errore, errore service", err, libro);
+        return throwError(() => new Error("Messaggio di errore casuale"))
+      })
+    );
   }
 
-  updateLibro(id: number, libro: LibroForm): Observable<LibroModel> {
-    return this.http.put<LibroModel>(`${this.apiUrl}/${id}`, libro);
+  updateLibro(uuid: string, libro: LibroForm): Observable<LibroModel> {
+    return this.http.put<LibroModel>(`${this.apiUrl}/${uuid}`, libro);
   }
 
-  deleteLibro(id: number): Observable<void> {
-    return this.http.delete<void>(`${this.apiUrl}/${id}`);
+  deleteLibro(uuid: string): Observable<void> {
+    return this.http.delete<void>(`${this.apiUrl}/${uuid}`).pipe(
+      catchError(err => {console.error("Messaggio errore, errore eliminazione", err, uuid);
+        return throwError(() => new Error("Messaggio di errore casuale"))
+      })
+    );
   }
 }

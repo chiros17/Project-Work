@@ -17,7 +17,7 @@ export class Libro implements OnInit {
   libri: LibroModel[] = [];
   selectedLibro: LibroModel | null = null; // Per la modifica o visualizzazione dettagli
   newLibro: LibroForm = {  // Modello per il form di creazione
-    id: 0,
+    uuid: '',
     titolo: '',
     autore: '',
     quantita: 0,
@@ -34,6 +34,7 @@ export class Libro implements OnInit {
   }
 
   addLibro(): void {
+    console.log(this.newLibro);
     this.libroService.createLibro(this.newLibro).subscribe({
       next: (libroAggiunto) => {
         console.log('Libro aggiunto con successo:', libroAggiunto);
@@ -41,7 +42,7 @@ export class Libro implements OnInit {
         this.resetNewLibroForm(); // Pulisci il form
         // this.loadLibri(); // Puoi anche ricaricare tutti i libri per assicurarti la consistenza
       },
-      error: (err) => console.error('Errore durante l\'aggiunta del libro:', err)
+      error: (err) => console.error('Errore durante l\'aggiunta del libro:', err, this.newLibro)
     });
   }
 
@@ -56,14 +57,14 @@ export class Libro implements OnInit {
   }
 
   // READ (Carica un libro specifico per ID - utile per i dettagli o la modifica)
-  loadLibroById(id: number): void {
-    this.libroService.getLibroById(id).subscribe({
+  loadLibroById(uuid: string): void {
+    this.libroService.getLibroById(uuid).subscribe({
       next: (data) => {
         this.selectedLibro = data;
         this.showEditForm = true; // Mostra il form di modifica
         console.log('Libro selezionato:', this.selectedLibro);
       },
-      error: (err) => console.error(`Errore durante il caricamento del libro ${id}:`, err)
+      error: (err) => console.error(`Errore durante il caricamento del libro ${uuid}:`, err)
     });
   }
 
@@ -72,14 +73,14 @@ export class Libro implements OnInit {
     if (this.selectedLibro && this.selectedLibro.id) {
       // Nota: Potresti voler mappare selectedLibro a LibroForm se le interfacce sono diverse
       const libroToUpdate: LibroForm = {
-        id: this.selectedLibro.id,
+        uuid: this.selectedLibro.uuid,
         titolo: this.selectedLibro.titolo,
         autore: this.selectedLibro.autore,
         quantita: this.selectedLibro.quantita,
         prezzo: this.selectedLibro.prezzo
       };
 
-      this.libroService.updateLibro(this.selectedLibro.id, libroToUpdate).subscribe({
+      this.libroService.updateLibro(this.selectedLibro.uuid, libroToUpdate).subscribe({
         next: (libroAggiornato) => {
           console.log('Libro aggiornato con successo:', libroAggiornato);
           // Trova il libro nell'array e aggiornalo
@@ -97,14 +98,14 @@ export class Libro implements OnInit {
   }
 
   // DELETE (Elimina un libro)
-  deleteLibro(id: number): void {
+  deleteLibro(uuid: string): void {
     if (confirm('Sei sicuro di voler eliminare questo libro?')) {
-      this.libroService.deleteLibro(id).subscribe({
+      this.libroService.deleteLibro(uuid).subscribe({
         next: () => {
-          console.log('Libro eliminato con successo:', id);
-          this.libri = this.libri.filter(libro => libro.id !== id); // Rimuovi dall'array locale
+          console.log('Libro eliminato con successo:', uuid);
+          this.libri = this.libri.filter(libro => libro.uuid !== uuid); // Rimuovi dall'array locale
         },
-        error: (err) => console.error(`Errore durante l'eliminazione del libro ${id}:`, err)
+        error: (err) => console.error(`Errore durante l'eliminazione del libro ${uuid}:`, err)
       });
     }
   }
@@ -124,7 +125,7 @@ export class Libro implements OnInit {
   // Resetta il form per l'aggiunta di un nuovo libro
   resetNewLibroForm(): void {
     this.newLibro = {
-      id: 0,
+      uuid: '',
       titolo: '',
       autore: '',
       quantita: 0,

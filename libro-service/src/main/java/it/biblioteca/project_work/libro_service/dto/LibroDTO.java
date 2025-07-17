@@ -22,8 +22,6 @@ public class LibroDTO
     @Size(min = 5, max = 100)
     private String autore;
 
-    private String copertina;
-
     @Min(0)
     private Integer quantita;
     private Double prezzo;

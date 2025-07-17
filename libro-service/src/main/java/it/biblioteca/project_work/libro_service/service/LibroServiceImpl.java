@@ -76,7 +76,9 @@ public class LibroServiceImpl implements LibroService
     @Override
     public void deleteByUuid(String uuid)
     {
+        System.err.println("\u001B[31m[DELETE] Book to delete: " + "\nSto cancellando\n" + "\u001B[0m");
         Libro bookToDelete = libroRepository.findByUuid( uuid ).orElseThrow(BookNotFoundException::new);
+        System.err.println("\u001B[31m[DELETE] Book to delete: " + bookToDelete + "\u001B[0m");
         libroRepository.deleteById(bookToDelete.getId());
     }
 
@@ -89,7 +91,6 @@ public class LibroServiceImpl implements LibroService
                 .uuid(book.getUuid())
                 .autore(book.getAutore())
                 .titolo(book.getTitolo())
-                .copertina(book.getCopertina())
                 .prezzo(book.getPrezzo())
                 .build();
     }
@@ -101,7 +102,6 @@ public class LibroServiceImpl implements LibroService
                 .uuid(book.getUuid())
                 .autore(book.getAutore())
                 .titolo(book.getTitolo())
-                .copertina(book.getCopertina())
                 .prezzo(book.getPrezzo())
                 .build();
     }

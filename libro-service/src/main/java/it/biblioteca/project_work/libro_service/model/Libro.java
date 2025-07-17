@@ -21,7 +21,6 @@ public class Libro
     private String uuid;
     private String titolo;
     private String autore;
-    private String copertina;
     private Integer quantita;
     private Double prezzo;
 }
