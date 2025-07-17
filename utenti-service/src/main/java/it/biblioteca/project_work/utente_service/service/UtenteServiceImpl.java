@@ -7,10 +7,7 @@ import java.util.UUID;
 import org.springframework.stereotype.Service;
 
 import it.biblioteca.project_work.utente_service.controller.AuthResponse;
-import it.biblioteca.project_work.utente_service.controller.IUtente;
-import it.biblioteca.project_work.utente_service.dto.LoginResponseDto;
 import it.biblioteca.project_work.utente_service.dto.UtenteDTO;
-import it.biblioteca.project_work.utente_service.entity.Ruolo;
 import it.biblioteca.project_work.utente_service.entity.Utente;
 import it.biblioteca.project_work.utente_service.exception.UnauthorizedException;
 import it.biblioteca.project_work.utente_service.exception.UserNotFoundException;
@@ -25,7 +22,7 @@ public class UtenteServiceImpl implements UtenteService
     // Iniezione del repository
 
     private final UtenteRepository utenteRepository;
-
+    private final JwtService jwtService;
 
 
     @Override
@@ -65,33 +62,27 @@ public class UtenteServiceImpl implements UtenteService
     }
 
     @Override
-    public AuthResponse autenticaUtente(String username, String password)
+    public AuthResponse autenticaUtente(String username, String password) 
     {
         Optional<Utente> userOptional = utenteRepository.findByUsername(username);
-        Utente utenteRitornato;
 
-        if (userOptional.isPresent())
+        if (userOptional.isPresent()) 
         {
             Utente utente = userOptional.get();
 
-            if (utente.getPassword().equals(password))
+            if (utente.getPassword().equals(password)) 
             {
-                utenteRitornato = new Utente(
-                    userOptional.get().getId(), 
-                    userOptional.get().getUuid(), 
-                    userOptional.get().getNome(), 
-                    userOptional.get().getEmail(), 
-                    userOptional.get().getUsername(),
-                    userOptional.get().getPassword(),
-                    userOptional.get().getRuolo()
-                );
-                        
-            }
+                String token = jwtService.generateToken(utente.getUsername());
+                UtenteDTO dto = modelToDto(utente);
 
-            //String token = jwtService.generateToken(userDto);
+                return AuthResponse.builder()
+                    .token(token)
+                    .utente(dto)
+                    .build();
+            }
         }
 
-        // Se l'utente non è presente o la password non corrisponde, lancia l'eccezione
+        // se non torna nulla, lancia eccezione
         throw new UnauthorizedException("Username o password non validi.");
     }
 

@@ -8,7 +8,6 @@ import org.springframework.stereotype.Service;
 import it.biblioteca.project_work.libro_service.repository.LibroRepository;
 
 import java.util.List;
-import java.util.Optional;
 import java.util.UUID;
 
 @Service
@@ -89,7 +88,6 @@ public class LibroServiceImpl implements LibroService
                 .uuid(book.getUuid())
                 .autore(book.getAutore())
                 .titolo(book.getTitolo())
-                .copertina(book.getCopertina())
                 .prezzo(book.getPrezzo())
                 .build();
     }
@@ -101,7 +99,6 @@ public class LibroServiceImpl implements LibroService
                 .uuid(book.getUuid())
                 .autore(book.getAutore())
                 .titolo(book.getTitolo())
-                .copertina(book.getCopertina())
                 .prezzo(book.getPrezzo())
                 .build();
     }

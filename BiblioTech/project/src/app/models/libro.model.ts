@@ -8,6 +8,7 @@ export interface LibroModel {
 }
 
 export interface LibroForm {
+  uuid?: string;
   titolo: string;
   autore: string;
   quantita: number;

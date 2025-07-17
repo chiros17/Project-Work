@@ -19,10 +19,13 @@ import it.biblioteca.project_work.libro_service.service.LibroService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 
-@CrossOrigin(origins = "http://localhost:4200", methods = {RequestMethod.GET, RequestMethod.POST, RequestMethod.PUT, RequestMethod.DELETE, RequestMethod.OPTIONS})
+@CrossOrigin(origins = "http://localhost:4200", 
+            methods = {RequestMethod.GET, RequestMethod.POST, RequestMethod.PUT, RequestMethod.DELETE, RequestMethod.OPTIONS},
+            allowedHeaders = "*",
+            allowCredentials = "true")
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/api/v1/libri")
+@RequestMapping("/api/v1/libro")
 public class LibroController
 {
     private final LibroService bookService;
@@ -36,11 +39,8 @@ public class LibroController
     @PostMapping
     LibroDTO save(@Valid @RequestBody LibroDTO bookDTO) { return bookService.save(bookDTO); }
 
-    @DeleteMapping
-    void delete(@RequestBody String uuid)
-    {
-        bookService.deleteByUuid(uuid);
-    }
+    @DeleteMapping("/{uuid}")
+    void delete(@PathVariable String uuid) { bookService.deleteByUuid(uuid); }
 
     @PutMapping
     LibroDTO update(@RequestBody LibroDTO bookDTO)
